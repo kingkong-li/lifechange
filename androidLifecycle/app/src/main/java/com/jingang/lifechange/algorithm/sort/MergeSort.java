@@ -1,14 +1,10 @@
-package com.jingang.lifecyclecase.utils;
+package com.jingang.lifechange.algorithm.sort;
 
 import java.util.Arrays;
 
-/**
- * @Description:
- * @Author:
- * @CreateTime:2020/8/16-9:31 AM
- * @changeTime:
- */
+
 public class MergeSort implements Sort {
+
     @Override
     public int[] ascendingSort(int[] intArray) {
         mergeSort(intArray);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jingang.lifecyclecase">
+    package="com.jingang.lifechange">
 
     <application
         android:name=".utils.MainApplication"
@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NormalActivity" />
+        <activity android:name=".testalgorithm.SortTestActivity" />
     </application>
 
 </manifest>

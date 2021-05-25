@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+   <TextView
+       android:id="@+id/description"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="排序算法介绍"/>
+    <Button
+        android:id="@+id/bubbleSort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="冒泡排序"/>
+    <Button
+        android:id="@+id/mergeSort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="合并排序"/>
+    <Button
+        android:id="@+id/quickSort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="快速排序"/>
+
+</LinearLayout>

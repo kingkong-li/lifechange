@@ -1,7 +1,4 @@
-package com.jingang.lifecyclecase;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.os.TraceCompat;
+package com.jingang.lifechange;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,19 +11,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.jingang.lifecyclecase.base.BaseActivity;
-import com.jingang.lifecyclecase.base.PublicThreadPools;
-import com.jingang.lifecyclecase.utils.ActivityCache;
-import com.jingang.lifecyclecase.utils.BubbleSort;
-import com.jingang.lifecyclecase.utils.QuickSort;
+import com.jingang.lifechange.algorithm.dynamic.dynamicPlan;
+import com.jingang.lifechange.algorithm.sort.QuickSort;
+import com.jingang.lifechange.base.BaseActivity;
+import com.jingang.lifechange.base.PublicThreadPools;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ThreadPoolExecutor;
+
+import leakcanary.AppWatcher;
 
 /**
  * @author jingang
@@ -53,9 +46,19 @@ public class MainActivity extends BaseActivity {
         map.put(1,2);
         map.put(1,3);
         Log.d("TAG", "map get(1)="+map.get(1));
+        Intent intent= new Intent();
+        Bundle bundle = new Bundle();
+        intent.putExtras(bundle);
+//        bundle.putBinder("key",new Binder());
+//        ImageView imageView=new ImageView(this);
+//        imageView.setLayoutParams();
+//        imageView.setScaleType();
+//        imageView.setImageBitmap();
+//        this.startActivity(intent);
 
 
 
+        AppWatcher.INSTANCE.getObjectWatcher().watch(intent,"intent");
 
 
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +77,7 @@ public class MainActivity extends BaseActivity {
                        char[][] c={{'a','b','c'},{'d','e','f'},{'g','h','k'}};
                         String a="adg";
                         String b="ababcfk";
-                        Log.e("TestCoding", "a result="+TestCoding.findTargetString(c,a)+ ",  b result="+TestCoding.findTargetString(c,b));
+                        Log.e("TestCoding", "a result="+ dynamicPlan.findTargetString(c,a)+ ",  b result="+ dynamicPlan.findTargetString(c,b));
 
                         int number=15;
                         int[] intArray=new int[number];

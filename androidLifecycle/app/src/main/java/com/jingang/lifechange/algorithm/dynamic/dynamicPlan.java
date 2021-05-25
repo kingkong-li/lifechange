@@ -1,14 +1,14 @@
-package com.jingang.lifecyclecase;
+package com.jingang.lifechange.algorithm.dynamic;
 
 import android.util.Log;
 
 /**
- * @Description:
+ * @Description: 动态规划
  * @Author:
  * @CreateTime:2020/8/17-10:02 AM
  * @changeTime:
  */
-public class TestCoding {
+public class dynamicPlan {
     public static  boolean findTargetString(char[][] twoDeString,String targetString){
         
             for(int i=0;i<twoDeString.length;i++){
@@ -91,8 +91,6 @@ public class TestCoding {
             }
 
         }
-
-
         return  false;
     };
 

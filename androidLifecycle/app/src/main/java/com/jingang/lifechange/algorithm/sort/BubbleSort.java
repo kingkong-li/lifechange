@@ -1,9 +1,9 @@
-package com.jingang.lifecyclecase.utils;
+package com.jingang.lifechange.algorithm.sort;
 
 /**
  * @Description:
  * @Author:
- * @CreateTime:2020/8/13-6:09 PM
+ * @CreateTime:2020/8/13-6:09  PM
  * @changeTime:
  */
 public class BubbleSort implements Sort {

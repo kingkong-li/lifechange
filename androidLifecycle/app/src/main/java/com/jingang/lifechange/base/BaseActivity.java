@@ -1,4 +1,4 @@
-package com.jingang.lifecyclecase.base;
+package com.jingang.lifechange.base;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -12,8 +12,6 @@ import com.jingang.lifecyclecase.R;
  * @author jingang
  */
 public class BaseActivity extends AppCompatActivity {
-
-
 
 
     @Override

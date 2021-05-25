@@ -1,4 +1,4 @@
-package com.jingang.lifecyclecase.utils;
+package com.jingang.lifechange.utils;
 
 import android.app.Activity;
 

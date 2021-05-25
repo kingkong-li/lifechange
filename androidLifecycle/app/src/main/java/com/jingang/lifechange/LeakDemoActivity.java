@@ -1,15 +1,14 @@
-package com.jingang.lifecyclecase;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.jingang.lifechange;
 
 import android.content.Context;
 import android.os.Bundle;
 
-import com.jingang.lifecyclecase.base.BaseActivity;
+import com.jingang.lifechange.base.BaseActivity;
 
 import java.util.ArrayList;
 
 /**
+ * 这个页面是主动制造内存泄露
  * @author jingang
  */
 public class LeakDemoActivity extends BaseActivity {

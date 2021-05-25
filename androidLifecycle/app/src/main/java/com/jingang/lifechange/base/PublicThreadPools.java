@@ -1,4 +1,4 @@
-package com.jingang.lifecyclecase.base;
+package com.jingang.lifechange.base;
 
 import android.os.Process;
 
