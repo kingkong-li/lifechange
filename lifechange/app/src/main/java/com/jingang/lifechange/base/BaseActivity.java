@@ -1,12 +1,12 @@
 package com.jingang.lifechange.base;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
 import android.util.Log;
 
-import com.jingang.lifecyclecase.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.jingang.lifechange.R;
+
 
 /**
  * @author jingang

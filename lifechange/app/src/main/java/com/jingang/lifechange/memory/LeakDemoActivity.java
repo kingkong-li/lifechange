@@ -1,8 +1,9 @@
-package com.jingang.lifechange;
+package com.jingang.lifechange.memory;
 
 import android.content.Context;
 import android.os.Bundle;
 
+import com.jingang.lifechange.R;
 import com.jingang.lifechange.base.BaseActivity;
 
 import java.util.ArrayList;

@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    tools:context=".MainActivity"
+    android:padding="15dp"
+    android:orientation="vertical">
     <Button
-        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bt_test_dialog"
-        android:text="@string/dialog_show"/>
+        android:id="@+id/bt_go_leaked_activity"
+        android:text="去深入了解内存" />
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_learn_algorithm"
+        android:text="去学习算法" />
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_learn_struct"
+        android:text="去使用数据结构" />
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_know_lifecycle"
+        android:text="去了解控件生命周期" />
 
-</RelativeLayout>
+</LinearLayout>

@@ -7,8 +7,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 /**
- * @Description:
- * @Author:
+ * @Description: 线程池
+ * @Author: kingkong
  * @CreateTime:2020/8/25-2:23 PM
  * @changeTime:
  */

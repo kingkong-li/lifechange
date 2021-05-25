@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LeakDemoActivity"></activity>
+        <activity android:name=".ui.TestDialogLifecycleActivity"></activity>
+        <activity android:name=".struct.MapUseActivity" />
+        <activity android:name=".memory.TestMemoryActivity" />
+        <activity android:name=".memory.LeakDemoActivity" />
         <activity android:name=".base.BaseActivity" />
         <activity
             android:name=".MainActivity"
@@ -21,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".testalgorithm.SortTestActivity" />
+        <activity android:name=".algorithm.SortTestActivity" />
     </application>
 
 </manifest>
