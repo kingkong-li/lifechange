@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bt_go_leaked_activity"
+        android:textStyle="bold"
         android:text="去深入了解内存" />
     <Button
         android:layout_marginTop="20dp"
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bt_learn_algorithm"
+        android:textStyle="bold"
         android:text="去学习算法" />
     <Button
         android:layout_marginTop="20dp"
@@ -26,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bt_learn_struct"
+        android:textStyle="bold"
         android:text="去使用数据结构" />
     <Button
         android:layout_marginTop="20dp"
@@ -33,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bt_know_lifecycle"
+        android:textStyle="bold"
         android:text="去了解控件生命周期" />
 
 </LinearLayout>

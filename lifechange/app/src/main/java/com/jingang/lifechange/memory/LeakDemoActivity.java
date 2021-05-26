@@ -21,4 +21,8 @@ public class LeakDemoActivity extends BaseActivity {
         setContentView(R.layout.activity_leak_demo);
         mContextList.add(this);
     }
+    @Override
+    public String getTag() {
+        return "内存泄露示例Activity";
+    }
 }

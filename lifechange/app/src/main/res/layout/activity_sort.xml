@@ -2,26 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="15dp"
     android:orientation="vertical">
    <TextView
        android:id="@+id/description"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
+       android:textColor="@android:color/holo_blue_dark"
+       android:layout_marginTop="20dp"
+       android:layout_marginLeft="2dp"
+       android:textSize="16sp"
+       android:textStyle="bold"
        android:text="排序算法介绍"/>
     <Button
         android:id="@+id/bubbleSort"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="14sp"
         android:text="冒泡排序"/>
     <Button
         android:id="@+id/mergeSort"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="14sp"
         android:text="合并排序"/>
     <Button
         android:id="@+id/quickSort"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="14sp"
         android:text="快速排序"/>
 
 </LinearLayout>

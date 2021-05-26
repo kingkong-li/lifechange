@@ -13,8 +13,6 @@ import com.jingang.lifechange.memory.LeakDemoActivity;
 import com.jingang.lifechange.struct.MapUseActivity;
 import com.jingang.lifechange.ui.TestDialogLifecycleActivity;
 
-import leakcanary.AppWatcher;
-
 /**
  * @author jingang
  */
@@ -62,40 +60,11 @@ public class MainActivity extends BaseActivity {
                 MainActivity.this.startActivity(intent);
             }
         });
-
-
-        Intent intent= new Intent();
-        Bundle bundle = new Bundle();
-        intent.putExtras(bundle);
-//        bundle.putBinder("key",new Binder());
-//        ImageView imageView=new ImageView(this);
-//        imageView.setLayoutParams();
-//        imageView.setScaleType();
-//        imageView.setImageBitmap();
-//        this.startActivity(intent);
-
-
-
-        AppWatcher.INSTANCE.getObjectWatcher().watch(intent,"intent");
-
-        PublicThreadPools.getService().submit(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        });
-        PublicThreadPools.getService().execute(new Runnable() {
-            @Override
-            public void run() {
-                Thread.currentThread().setName(" my TaskName");
-            }
-        });
-
-
         Debug.stopMethodTracing();
 
 
     }
+
 
 
 }

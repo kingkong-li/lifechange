@@ -1,7 +1,10 @@
 package com.jingang.lifechange.base;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,7 +19,11 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        if (getSupportActionBar()!=null){
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(getTag());
+        }
         super.onCreate(savedInstanceState);
         Log.v(getTag(),"onCreate");
         setContentView(R.layout.activity_base);
@@ -32,6 +39,15 @@ public class BaseActivity extends AppCompatActivity {
         Log.v(getTag(),"onStart");
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish(); // back button
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     protected void onRestart() {
         super.onRestart();

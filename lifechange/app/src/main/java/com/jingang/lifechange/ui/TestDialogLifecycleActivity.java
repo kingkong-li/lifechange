@@ -47,4 +47,8 @@ public class TestDialogLifecycleActivity extends BaseActivity {
             }
         });
     }
+    @Override
+    public String getTag() {
+        return "Activity弹出Dialog生命周期变化";
+    }
 }
