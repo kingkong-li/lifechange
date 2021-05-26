@@ -3,8 +3,8 @@ package com.jingang.lifechange.algorithm;
 import java.util.HashMap;
 
 /**
- * @Description:
- * @Author:
+ * @Description:Lru 缓存实现
+ * @Author: jingang.Li
  * @CreateTime:2020/8/31-9:34 AM
  * @changeTime:
  */
