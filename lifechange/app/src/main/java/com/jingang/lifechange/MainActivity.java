@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.jingang.lifechange.algorithm.SortTestActivity;
+import com.jingang.lifechange.algorithm.listoperation.TestListOperationActivity;
 import com.jingang.lifechange.base.BaseActivity;
 import com.jingang.lifechange.base.PublicThreadPools;
 import com.jingang.lifechange.memory.LeakDemoActivity;
@@ -57,6 +58,15 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this, MapUseActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+        Button button5=findViewById(R.id.bt_learn_list);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(MainActivity.this, TestListOperationActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });
