@@ -1,11 +1,10 @@
 package com.jingang.lifechange.algorithm.struct;
 
-import android.util.ArraySet;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @Description:
@@ -36,6 +35,26 @@ public class TwoSum {
 
         return new int[0];
     }
+
+    /**
+     * 通过set来解决两数之和的问题，但是如果需要求下标 则需要用map
+     * @param numbers
+     * @param target
+     * @return
+     */
+    public int[] twoSum1(int[] numbers, int target) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : numbers) {
+            int potentialMatch = target - num;
+            if (set.contains(potentialMatch)) {
+                return new int[]{potentialMatch, num};
+            } else {
+                set.add(num);
+            }
+        }
+        return new int[0];
+    }
+
     public static void testTwoSum () {
         int[] numbers=new int[]{1,2,3,4};
         Log.v("twoSum","输入数组="+getArrayString(numbers));
@@ -53,10 +72,8 @@ public class TwoSum {
             }else{
                 arrayString.append(",").append(array[i]);
             }
-
         }
         return arrayString+"]";
-
 
     }
 
