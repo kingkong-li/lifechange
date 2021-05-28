@@ -19,20 +19,20 @@ public class BaseListOperation {
      */
     public static ListNode reverseList(ListNode head) {
         //pre指针指向已经反转好的链表的最后一个节点，最开始没有反转，所以指向nullptr
-        ListNode pre=null;
+        ListNode pre = null;
         //cur指针指向待反转链表的第一个节点，最开始第一个节点待反转，所以指向head
-        ListNode currentNode=head;
+        ListNode currentNode = head;
         // next 保存未反转列表下一个节点，因为待反转的反转后 会丢失后面的信息，所以next是保存用
-        ListNode next=null;
-        while(currentNode!=null){
-//            保存
-            next=currentNode.next;
-//          反转当前列表
-            currentNode.next=pre;
+        ListNode next = null;
+        while (currentNode != null) {
+            //  保存下一个节点
+            next = currentNode.next;
+            // 反转当前列表
+            currentNode.next = pre;
             // pre 指向已经反转好的列表头
-            pre=currentNode;
-//            进行下一轮反转
-            currentNode=next;
+            pre = currentNode;
+            // 进行下一轮反转
+            currentNode = next;
 
         }
         return pre;
@@ -59,6 +59,11 @@ public class BaseListOperation {
 
     }
 
+    /**
+     *  返回链表的String对象
+     * @param head 链表头指针
+     * @return 一个String对象
+     */
     public static String getListString(ListNode head){
         ListNode iCur=head;
         String list="{";

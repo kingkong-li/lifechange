@@ -9,9 +9,8 @@ import android.widget.Button;
 import com.jingang.lifechange.algorithm.SortTestActivity;
 import com.jingang.lifechange.algorithm.listoperation.TestListOperationActivity;
 import com.jingang.lifechange.base.BaseActivity;
-import com.jingang.lifechange.base.PublicThreadPools;
 import com.jingang.lifechange.memory.LeakDemoActivity;
-import com.jingang.lifechange.struct.MapUseActivity;
+import com.jingang.lifechange.algorithm.struct.MapUseActivity;
 import com.jingang.lifechange.ui.TestDialogLifecycleActivity;
 
 /**
