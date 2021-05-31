@@ -6,8 +6,9 @@ import android.os.Debug;
 import android.view.View;
 import android.widget.Button;
 
+import com.jingang.lifechange.algorithm.AlgorithmMainActivity;
 import com.jingang.lifechange.algorithm.SortTestActivity;
-import com.jingang.lifechange.algorithm.listoperation.TestListOperationActivity;
+import com.jingang.lifechange.algorithm.struct.listoperation.TestListOperationActivity;
 import com.jingang.lifechange.base.BaseActivity;
 import com.jingang.lifechange.memory.LeakDemoActivity;
 import com.jingang.lifechange.algorithm.struct.MapUseActivity;
@@ -47,16 +48,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(MainActivity.this, SortTestActivity.class);
-                MainActivity.this.startActivity(intent);
-            }
-        });
-        Button button4=findViewById(R.id.bt_learn_struct);
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.setClass(MainActivity.this, MapUseActivity.class);
+                intent.setClass(MainActivity.this, AlgorithmMainActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
-package com.jingang.lifechange.algorithm.listoperation;
+package com.jingang.lifechange.algorithm.struct.listoperation;
 
 import android.os.Bundle;
 
@@ -17,5 +17,6 @@ public class TestListOperationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_list);
         BaseListOperation.testReverseList();
+        BaseListOperation.TestDoubleLinkList();
     }
 }

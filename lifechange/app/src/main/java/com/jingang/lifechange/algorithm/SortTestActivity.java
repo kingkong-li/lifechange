@@ -7,7 +7,7 @@ import com.jingang.lifechange.R;
 import com.jingang.lifechange.algorithm.dynamic.dynamicPlan;
 import com.jingang.lifechange.algorithm.sort.QuickSort;
 import com.jingang.lifechange.base.BaseActivity;
-import com.jingang.lifechange.base.PublicThreadPools;
+import com.jingang.lifechange.utils.PublicThreadPools;
 
 /**
  * @Description: 测试分类算法的Activity

@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jingang.lifechange.algorithm.listoperation.TestListOperationActivity">
+    tools:context=".algorithm.struct.listoperation.TestListOperationActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
