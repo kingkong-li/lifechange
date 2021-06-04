@@ -41,6 +41,29 @@ public class BaseListOperation {
     }
 
     /**
+     * 反转单链表的一种实现，使用一个虚拟的节点
+     * 从头部取，每次取来的节点，指向上次最后的节点，但是上次最后的节点
+     * 怎么保存呢，需要的是一个dumy节点来指向它，这样就是每次从原始列表取节点
+     * 插入于 dumyNode和已经翻转的列表之间
+     * @param head
+     * @return
+     */
+    public static SingleListNode reverseListUseDummyNode(SingleListNode head){
+        //构建一个始终指向头的指针-dummyNode
+        SingleListNode dummyNode=new SingleListNode(0);
+
+        while (head!=null){
+            SingleListNode next=head.next;
+            head.next=dummyNode.next;
+            dummyNode.next=head;
+            head=next;
+        }
+
+        return dummyNode.next;
+
+    }
+
+    /**
      * 测试反转列表的方法
      */
     public static void testReverseList(){
@@ -56,7 +79,11 @@ public class BaseListOperation {
         Log.v(TAG,"testReverseList 原始的list="+ BaseListOperation.getListString(head));
         //反转链表
         SingleListNode reversedList=  BaseListOperation.reverseList(head);
+
         Log.v(TAG,"testReverseList 反转后"+"list="+ BaseListOperation.getListString(reversedList));
+        SingleListNode reversedListAgain=BaseListOperation.reverseListUseDummyNode(reversedList);
+        Log.v(TAG,"testReverseList 通过虚拟头节点 再次翻转"+"list="+ BaseListOperation.getListString(reversedListAgain));
+
 
     }
 
@@ -89,5 +116,55 @@ public class BaseListOperation {
         Log.v(TAG,"TestDoubleLinkList after delete index 2 linkedList[2]="+linkedList.getNodeValue(2).toString());
         linkedList.addAtIndex(3,10000);
         Log.v(TAG,"TestDoubleLinkList linkedList="+linkedList.toString());
+    }
+
+    /**
+     * 合并两个已经是升序排序的单链表
+     * @param head1
+     * @param head2
+     * @return
+     */
+    private static SingleListNode mergeTwoAscSingleListNode(SingleListNode head1,SingleListNode head2){
+        SingleListNode newHead=new SingleListNode(0);
+        SingleListNode newTail=newHead;
+        while(head1!=null && head2!=null){
+            if(head1.val<head2.val){
+                newTail.next=head1;
+                head1=head1.next;
+            }else{
+                newTail.next=head2;
+                head2=head2.next;
+            }
+            newTail=newTail.next;
+        }
+        newTail.next=(head1!=null)?head1:head2;
+        return newHead.next;
+
+    }
+    public static void testMerge(){
+        // 构建链表1 start
+        SingleListNode head1=new SingleListNode(0);
+        SingleListNode currentNode=head1;
+        for(int i=1;i<10;i++){
+            SingleListNode listNode=new SingleListNode(2*i);
+            currentNode.next=listNode;
+            currentNode=listNode;
+        }
+        //构建链表end head就是头指针
+        Log.v(TAG,"head1="+getListString(head1));
+        // 构建链表2 start
+        SingleListNode head2=new SingleListNode(0);
+        SingleListNode currentNode1=head2;
+        for(int i=1;i<10;i++){
+            SingleListNode listNode=new SingleListNode(2*i-1);
+            currentNode1.next=listNode;
+            currentNode1=listNode;
+        }
+        //构建链表end head就是头指针
+        Log.v(TAG,"head2="+getListString(head2));
+
+        SingleListNode newHead=mergeTwoAscSingleListNode(head1,head2);
+        Log.v(TAG,"newHead="+getListString(newHead));
+
     }
 }
