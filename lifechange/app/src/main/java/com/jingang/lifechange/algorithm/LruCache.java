@@ -19,6 +19,10 @@ public class LruCache {
     public LruCache(int capacity){
         this.size = 0;
         this.mCapacity = capacity;
+        head=new DLinkedNode(0,0);
+        tail=new DLinkedNode(0,0);
+        head.next=tail;
+        tail.pre=head;
 
     }
     public int get(int key){

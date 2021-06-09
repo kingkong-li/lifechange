@@ -120,6 +120,9 @@ public class BaseListOperation {
 
     /**
      * 合并两个已经是升序排序的单链表
+     * 链表合并的关键 在于遍历完毕这两个链表
+     * 还要构造一个头节点
+     * 一般做法还要构造一个尾巴节点 指向合并后链表的最后一个
      * @param head1
      * @param head2
      * @return
@@ -141,6 +144,36 @@ public class BaseListOperation {
         return newHead.next;
 
     }
+
+    private static SingleListNode mergeTwoAscListNode(SingleListNode head1,SingleListNode head2){
+       SingleListNode dummyHead=new SingleListNode(0);
+       assignTailNext(head1,head2,dummyHead);
+       return dummyHead.next;
+
+    }
+
+    /**
+     * 通过给当前节点 一直递归赋值next 最终把l1 和l2 都给遍历完毕
+     * @param l1
+     * @param l2
+     * @param tail
+     */
+    private static void assignTailNext(SingleListNode l1,SingleListNode l2,SingleListNode tail){
+        if(l1==null || l2==null){
+            tail.next= l1!=null? l1:l2;
+            return;
+        }
+        if(l1.val<l2.val){
+            tail.next=l1;
+            assignTailNext(l1.next,l2,tail.next);
+        }else {
+            tail.next=l2;
+            assignTailNext(l1,l2.next,tail.next);
+        }
+    }
+
+
+
     public static void testMerge(){
         // 构建链表1 start
         SingleListNode head1=new SingleListNode(0);
@@ -165,6 +198,10 @@ public class BaseListOperation {
 
         SingleListNode newHead=mergeTwoAscSingleListNode(head1,head2);
         Log.v(TAG,"newHead="+getListString(newHead));
+        //使用递归很容易产生 递归栈溢出的问题  这个问题下 发现
+        // java.lang.StackOverflowError: stack size 8MB 虚拟机给每个线程栈分配8M
+        SingleListNode newHead1=mergeTwoAscListNode(head1,head2);
+        Log.v(TAG,"使用递归 newHead="+getListString(newHead));
 
     }
 }
