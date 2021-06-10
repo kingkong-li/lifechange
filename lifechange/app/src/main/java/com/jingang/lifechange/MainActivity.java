@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.jingang.lifechange.algorithm.AlgorithmMainActivity;
+import com.jingang.lifechange.algorithm.struct.array.ArrayTestActivity;
 import com.jingang.lifechange.algorithm.struct.listoperation.TestListOperationActivity;
 import com.jingang.lifechange.base.BaseActivity;
 import com.jingang.lifechange.generics.TestGenericsActivity;
@@ -57,7 +58,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(MainActivity.this, TestListOperationActivity.class);
+                intent.setClass(MainActivity.this, ArrayTestActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });
