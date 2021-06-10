@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".algorithm.AlgorithmMainActivity"></activity>
+        <activity android:name=".generics.TestGenericsActivity"></activity>
+        <activity android:name=".algorithm.AlgorithmMainActivity" />
         <activity android:name=".algorithm.struct.listoperation.TestListOperationActivity" />
         <activity android:name=".ui.TestDialogLifecycleActivity" />
         <activity android:name=".algorithm.struct.MapUseActivity" />

@@ -40,5 +40,13 @@
         android:id="@+id/bt_learn_list"
         android:textStyle="bold"
         android:text="学习链表" />
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_learn_generics"
+        android:textStyle="bold"
+        android:text="学习泛型" />
 
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.jingang.lifechange.algorithm.AlgorithmMainActivity;
 import com.jingang.lifechange.algorithm.struct.listoperation.TestListOperationActivity;
 import com.jingang.lifechange.base.BaseActivity;
+import com.jingang.lifechange.generics.TestGenericsActivity;
 import com.jingang.lifechange.memory.LeakDemoActivity;
 import com.jingang.lifechange.ui.TestDialogLifecycleActivity;
 
@@ -51,12 +52,21 @@ public class MainActivity extends BaseActivity {
                 MainActivity.this.startActivity(intent);
             }
         });
-        Button button5=findViewById(R.id.bt_learn_list);
-        button5.setOnClickListener(new View.OnClickListener() {
+        Button button4=findViewById(R.id.bt_learn_list);
+        button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this, TestListOperationActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+        Button button5=findViewById(R.id.bt_learn_generics);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(MainActivity.this, TestGenericsActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });
