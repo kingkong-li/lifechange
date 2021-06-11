@@ -56,6 +56,12 @@ class BaseArrayOption {
 
     }
 
+    /**
+     * 返回对象数组的String
+     * @param array
+     * @param <T> 泛型定义
+     * @return
+     */
     private <T> String getArrayString(T[] array){
          StringBuilder arrayString=new StringBuilder();
          for(int i=0;i<array.length;i++){

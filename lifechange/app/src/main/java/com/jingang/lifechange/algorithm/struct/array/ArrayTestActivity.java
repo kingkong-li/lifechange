@@ -16,5 +16,6 @@ public class ArrayTestActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arrary_test);
         new BaseArrayOption().checkBaseOption();
+        new ArrayMonotonicity();
     }
 }
