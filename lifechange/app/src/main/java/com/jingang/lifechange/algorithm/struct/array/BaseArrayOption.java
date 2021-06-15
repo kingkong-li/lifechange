@@ -70,7 +70,7 @@ class BaseArrayOption {
         return arrayString.toString();
     }
 
-    private String getIntArrayString(int[] array){
+    public static String getIntArrayString(int[] array){
         StringBuilder arrayString=new StringBuilder();
         for (int value : array) {
             arrayString.append(value).append(" ");
