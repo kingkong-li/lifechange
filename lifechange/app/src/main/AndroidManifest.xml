@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".lifecycle.StandardActivity"></activity>
+        <activity android:name=".lifecycle.LifeCycleMainActivity"></activity>
+        <activity android:name=".lifecycle.StandardActivity" />
         <activity
             android:name=".lifecycle.SingleInstanceActivity"
             android:launchMode="singleInstance" />
@@ -18,7 +19,7 @@
         <activity android:name=".generics.TestGenericsActivity" />
         <activity android:name=".algorithm.AlgorithmMainActivity" />
         <activity android:name=".algorithm.struct.listoperation.TestListOperationActivity" />
-        <activity android:name=".lifecycle.TestDialogLifecycleActivity" />
+        <activity android:name=".lifecycle.DialogWithActivity" />
         <activity android:name=".algorithm.struct.MapUseActivity" />
         <activity android:name=".memory.TestMemoryActivity" />
         <activity android:name=".memory.LeakDemoActivity" />

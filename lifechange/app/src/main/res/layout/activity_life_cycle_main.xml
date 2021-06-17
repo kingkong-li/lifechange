@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jingang.lifechange.lifecycle.LifeCycleMainActivity"
+    android:padding="15dp"
+    android:orientation="vertical">
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_dialog_and_activity"
+        android:textStyle="bold"
+        android:text="去了解Activity和dialog交互生命周期" />
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_standard_start"
+        android:textStyle="bold"
+        android:text="查看standard模式启动的Activity" />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_single_instance_activity"
+        android:textStyle="bold"
+        android:text="查看singleInstance模式启动的Activity" />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_single_top_activity"
+        android:textStyle="bold"
+        android:text="查看singleTop模式启动的Activity" />
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_single_task_activity"
+        android:textStyle="bold"
+        android:text="查看singleTask模式启动的Activity" />
+
+</LinearLayout>

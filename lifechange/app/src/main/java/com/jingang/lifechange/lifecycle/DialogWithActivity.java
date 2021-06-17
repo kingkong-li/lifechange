@@ -12,7 +12,7 @@ import com.jingang.lifechange.base.BaseActivity;
 /**
  * @author jingang
  */
-public class TestDialogLifecycleActivity extends BaseActivity {
+public class DialogWithActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class TestDialogLifecycleActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 final android.app.AlertDialog.Builder builder = new AlertDialog.Builder(
-                        TestDialogLifecycleActivity.this);
+                        DialogWithActivity.this);
                 builder.setTitle("测试生命周期");
                 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
                     @Override

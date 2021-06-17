@@ -11,6 +11,7 @@ import com.jingang.lifechange.algorithm.AlgorithmMainActivity;
 import com.jingang.lifechange.algorithm.struct.array.ArrayTestActivity;
 import com.jingang.lifechange.base.BaseActivity;
 import com.jingang.lifechange.generics.TestGenericsActivity;
+import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
 import com.jingang.lifechange.lifecycle.StandardActivity;
 import com.jingang.lifechange.memory.LeakDemoActivity;
 
@@ -39,7 +40,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(MainActivity.this, StandardActivity.class);
+                intent.setClass(MainActivity.this, LifeCycleMainActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });
