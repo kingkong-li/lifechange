@@ -30,5 +30,13 @@ public class ArrayTestActivity extends BaseActivity {
         Log.v(TAG,"use method 3 Array="+BaseArrayOption.getIntArrayString(
                 new ArrayMonotonicity().findPeakInArray3(array)));
 
+        int[] array1=new int[]{-1, 5, 10, 20, 28, 3};
+        int[] array2=new int[]{26, 134, 135, 15, 17};
+        Log.v(TAG,"use method 1 getMin="+BaseArrayOption.getIntArrayString(
+                new TwoArrayDifference().getMinDifference0(array1,array2)));
+        Log.v(TAG,"use method 2 getMin="+BaseArrayOption.getIntArrayString(
+                new TwoArrayDifference().getMinDifference1(array1,array2)));
+
+
     }
 }

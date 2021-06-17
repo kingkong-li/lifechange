@@ -9,11 +9,10 @@ import android.widget.Button;
 
 import com.jingang.lifechange.algorithm.AlgorithmMainActivity;
 import com.jingang.lifechange.algorithm.struct.array.ArrayTestActivity;
-import com.jingang.lifechange.algorithm.struct.listoperation.TestListOperationActivity;
 import com.jingang.lifechange.base.BaseActivity;
 import com.jingang.lifechange.generics.TestGenericsActivity;
+import com.jingang.lifechange.lifecycle.StandardActivity;
 import com.jingang.lifechange.memory.LeakDemoActivity;
-import com.jingang.lifechange.ui.TestDialogLifecycleActivity;
 
 /**
  * @author jingang
@@ -40,7 +39,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(MainActivity.this, TestDialogLifecycleActivity.class);
+                intent.setClass(MainActivity.this, StandardActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });

@@ -1,17 +1,12 @@
-package com.jingang.lifechange.ui;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.jingang.lifechange.lifecycle;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.jingang.lifechange.R;
-import com.jingang.lifechange.algorithm.dynamic.dynamicPlan;
-import com.jingang.lifechange.algorithm.sort.QuickSort;
 import com.jingang.lifechange.base.BaseActivity;
 
 /**

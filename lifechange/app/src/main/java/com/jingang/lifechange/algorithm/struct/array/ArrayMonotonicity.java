@@ -4,8 +4,6 @@ import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-
 /**
  * @Description: 数组单调性专项练习
  * @Author: jingang.Li
