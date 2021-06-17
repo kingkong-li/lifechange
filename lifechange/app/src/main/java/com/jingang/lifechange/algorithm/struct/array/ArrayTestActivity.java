@@ -24,7 +24,7 @@ public class ArrayTestActivity extends BaseActivity {
         };
         Log.v(TAG,"Array="+BaseArrayOption.getIntArrayString(array));
         Log.v(TAG,"Array="+BaseArrayOption.getIntArrayString(
-                new ArrayMonotonicity().findPeakInArray(array)));
+                new ArrayMonotonicity().findPeakInArray1(array)));
         Log.v(TAG,"use method 2 Array="+BaseArrayOption.getIntArrayString(
                 new ArrayMonotonicity().findPeakInArray2(array)));
 
