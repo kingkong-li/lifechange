@@ -125,11 +125,46 @@ class ArrayMonotonicity {
 //        那这又是为啥呢？
         for(int i=array.length-2;i>=0;i--){
             if(array[i]>=array[i+1]){
-                rightArray[i]=rightArray[i-1]+1;
+                rightArray[i]=rightArray[i+1]+1;
             }
         }
 
         return rightArray;
     }
+
+    /**
+     *这个理论基于，当前峰的最后一个元素，才是下一个峰的开始元素
+     * 所以这个方法 只能求 真正单调的峰
+     * @param array
+     * @return
+     */
+    public int[] findPeakInArray3(int[] array){
+        int maxLength=0;
+        int peakIndex=0;
+        int end=0;
+        while (end<array.length){
+            // 先寻找波峰
+//            第一波 标记下当前起点
+            int start=end;
+            while(end+1<array.length && array[end+1]>array[end]){
+                end++;
+            }
+            int peak=end;
+            while (end+1<array.length && array[end+1]<array[end]){
+                end++;
+            }
+            if(end>start && end-start>maxLength){
+               maxLength=end-start+1;
+               peakIndex=peak;
+            }
+            if(end==start){
+                end++;
+            }
+
+        }
+        return new int[]{maxLength,peakIndex};
+
+    }
+
 
 }

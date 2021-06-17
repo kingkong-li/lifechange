@@ -20,13 +20,15 @@ public class ArrayTestActivity extends BaseActivity {
         setContentView(R.layout.activity_arrary_test);
         new BaseArrayOption().checkBaseOption();
         int[] array=new int[]{
-                1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3
+                1, 2, 3, 100, 4, 0, 10, 6, 5, -1, -3, 2, 3
         };
         Log.v(TAG,"Array="+BaseArrayOption.getIntArrayString(array));
-        Log.v(TAG,"Array="+BaseArrayOption.getIntArrayString(
+        Log.v(TAG,"use method 1 Array="+BaseArrayOption.getIntArrayString(
                 new ArrayMonotonicity().findPeakInArray1(array)));
         Log.v(TAG,"use method 2 Array="+BaseArrayOption.getIntArrayString(
                 new ArrayMonotonicity().findPeakInArray2(array)));
+        Log.v(TAG,"use method 3 Array="+BaseArrayOption.getIntArrayString(
+                new ArrayMonotonicity().findPeakInArray3(array)));
 
     }
 }
