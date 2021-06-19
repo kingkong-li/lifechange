@@ -14,7 +14,7 @@ import com.jingang.lifechange.algorithm.struct.listoperation.bean.SingleListNode
 public class BaseListOperation {
     private static final String TAG=BaseListOperation.class.getSimpleName();
     /**
-     * 反转列表
+     * 反转单链表
      * @param head
      * @return
      */
@@ -122,7 +122,8 @@ public class BaseListOperation {
      * 合并两个已经是升序排序的单链表
      * 链表合并的关键 在于遍历完毕这两个链表
      * 还要构造一个头节点
-     * 一般做法还要构造一个尾巴节点 指向合并后链表的最后一个
+     * 一般做法还要构造一个尾巴节点 指向合并后新链表的最后一个
+     * 头一般构造完毕就不会变化，关键就是根据两个链表值 选择哪一个作为尾部节点
      * @param head1
      * @param head2
      * @return

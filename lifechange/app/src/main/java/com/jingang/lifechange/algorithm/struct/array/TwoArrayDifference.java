@@ -13,6 +13,13 @@ import java.util.Arrays;
  * @changeTime:
  */
 class TwoArrayDifference {
+    /**
+     *  获取连个数组中 差最小的两个数字
+     *  采用暴力解法-两个循环搞定 时间复杂度为O(N^2)
+     * @param array1
+     * @param array2
+     * @return
+     */
     public int[] getMinDifference0(int[] array1,int[] array2){
         int index1=0;
         int index2=0;
@@ -31,6 +38,15 @@ class TwoArrayDifference {
 
     }
 
+    /**
+     *  求两个数组中差值最小的两个数、
+     *  首先对数组进行排序-数组排序 数组排序是采用快速排序算法 时间复杂度是O(n log(n))
+     *  然后再通过一次循环，从头部开始比较两个数组对应元素大小，谁如果比较小，就去index+1
+     *  去靠近大的，通一次循环-就可以得到两个差值最近的元素
+     * @param array1
+     * @param array2
+     * @return
+     */
     public int[] getMinDifference1(int[] array1,int[] array2){
         Arrays.sort(array1);
         Arrays.sort(array2);

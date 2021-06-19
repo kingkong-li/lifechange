@@ -1,10 +1,9 @@
 package com.jingang.lifechange.algorithm.sort;
 
 /**
- * @Description:
+ * @Description: 快速排序的实现
  * @Author:
- * @CreateTime:2020/8/13-6:10 PM
- * @changeTime:
+ * @CreateTime: 2020/8/13-6:10 PM
  */
 public class QuickSort implements Sort {
     @Override
