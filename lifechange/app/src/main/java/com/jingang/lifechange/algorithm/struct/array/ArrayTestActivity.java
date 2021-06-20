@@ -37,6 +37,12 @@ public class ArrayTestActivity extends BaseActivity {
         Log.v(TAG,"use method 2 getMin="+BaseArrayOption.getIntArrayString(
                 new TwoArrayDifference().getMinDifference1(array1,array2)));
 
+        int[] array3=new int[]{1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19};
+        Log.v(TAG,"use method 1 getSubArray="+BaseArrayOption.getIntArrayString(
+                new ShortestDisorderArray().findShortestDisorderSubArray(array3)));
+        Log.v(TAG,"use method 2 getSubArray = "+BaseArrayOption.getIntArrayString(
+                new ShortestDisorderArray().findShortestDisorderSubArray2(array3)));
+
 
     }
 }
