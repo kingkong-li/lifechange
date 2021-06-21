@@ -58,6 +58,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
+
                 intent.setClass(MainActivity.this, ArrayTestActivity.class);
                 MainActivity.this.startActivity(intent);
             }
@@ -83,6 +84,10 @@ public class MainActivity extends BaseActivity {
 
     }
 
-
-
+    @Override
+    protected void onResume() {
+        int i=0;
+        i++;
+        super.onResume();
+    }
 }
