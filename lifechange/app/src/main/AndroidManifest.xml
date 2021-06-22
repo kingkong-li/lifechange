@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".lifecycle.LifeCycleMainActivity"></activity>
+        <activity android:name=".ui.LearnDisplayActivity"></activity>
+        <activity android:name=".lifecycle.LifeCycleMainActivity" />
         <activity android:name=".lifecycle.StandardActivity" />
         <activity
             android:name=".lifecycle.SingleInstanceActivity"
