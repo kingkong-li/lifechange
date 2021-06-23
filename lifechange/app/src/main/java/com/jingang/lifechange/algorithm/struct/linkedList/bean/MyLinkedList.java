@@ -1,4 +1,4 @@
-package com.jingang.lifechange.algorithm.struct.listoperation.bean;
+package com.jingang.lifechange.algorithm.struct.linkedList.bean;
 
 /**
  * @Description: 尝试自己实现LinkedList

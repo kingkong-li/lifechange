@@ -19,7 +19,7 @@
         <activity android:name=".algorithm.struct.array.ArrayTestActivity" />
         <activity android:name=".generics.TestGenericsActivity" />
         <activity android:name=".algorithm.AlgorithmMainActivity" />
-        <activity android:name=".algorithm.struct.listoperation.TestListOperationActivity" />
+        <activity android:name=".algorithm.struct.linkedList.TestListOperationActivity" />
         <activity android:name=".lifecycle.DialogWithActivity" />
         <activity android:name=".algorithm.struct.MapUseActivity" />
         <activity android:name=".memory.TestMemoryActivity" />

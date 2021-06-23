@@ -1,9 +1,9 @@
-package com.jingang.lifechange.algorithm.struct.listoperation;
+package com.jingang.lifechange.algorithm.struct.linkedList;
 
 import android.util.Log;
 
-import com.jingang.lifechange.algorithm.struct.listoperation.bean.MyLinkedList;
-import com.jingang.lifechange.algorithm.struct.listoperation.bean.SingleListNode;
+import com.jingang.lifechange.algorithm.struct.linkedList.bean.MyLinkedList;
+import com.jingang.lifechange.algorithm.struct.linkedList.bean.SingleListNode;
 
 /**
  * @Description: 基本链表操作

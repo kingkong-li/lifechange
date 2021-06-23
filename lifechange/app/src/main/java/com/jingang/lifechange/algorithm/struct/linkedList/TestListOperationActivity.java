@@ -1,4 +1,4 @@
-package com.jingang.lifechange.algorithm.struct.listoperation;
+package com.jingang.lifechange.algorithm.struct.linkedList;
 
 import android.os.Bundle;
 import android.util.Log;
