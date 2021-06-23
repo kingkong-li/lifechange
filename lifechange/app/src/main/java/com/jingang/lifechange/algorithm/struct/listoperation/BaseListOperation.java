@@ -7,9 +7,8 @@ import com.jingang.lifechange.algorithm.struct.listoperation.bean.SingleListNode
 
 /**
  * @Description: 基本链表操作
- * @Author:
+ * @Author: JinGang.Li
  * @CreateTime:2021/5/27-8:20 AM
- * @changeTime:
  */
 public class BaseListOperation {
     private static final String TAG=BaseListOperation.class.getSimpleName();

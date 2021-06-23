@@ -2,12 +2,13 @@ package com.jingang.lifechange.algorithm.struct;
 
 import android.util.Log;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @Description:
+ * @Description: 给出一个整数数组nums和一个target整数，返回两个和为target的整数
  * @Author: jingang.Li
  * @CreateTime: 2021/5/28-9:08 AM
  * @changeTime:
@@ -42,7 +43,7 @@ public class TwoSum {
      * @param target
      * @return
      */
-    public int[] twoSum1(int[] numbers, int target) {
+    public static int[] twoSum1(int[] numbers, int target) {
         Set<Integer> set = new HashSet<>();
         for (int num : numbers) {
             int potentialMatch = target - num;
@@ -55,13 +56,39 @@ public class TwoSum {
         return new int[0];
     }
 
+    /**
+     * 通过两个指针方法来解决 两数之和问题
+     * 基本思想：升序数组两数之和 可以这样调整：
+     * 通过两个指针来调整
+     * @param numbers
+     * @param target
+     * @return
+     */
+    public static int[] twoSum2(int[] numbers, int target) {
+        Arrays.sort(numbers);
+        int left=0;
+        int right=numbers.length-1;
+        while(left<right){
+            if(numbers[left]+numbers[right]==target){
+                return new int[]{numbers[left],numbers[right]};
+            }else if(numbers[left]+numbers[right]>target){
+                right--;
+            }else {
+                left++;
+            }
+        }
+        return new int[0];
+    }
+
     public static void testTwoSum () {
         int[] numbers=new int[]{1,2,3,4};
         Log.v("twoSum","输入数组="+getArrayString(numbers));
 
         int target=5;
         Log.v("twoSum","输入target="+""+target);
-        Log.v("twoSum","输出结果="+getArrayString(twoSum(numbers,target)));
+        Log.v("twoSum","方法一 输出结果="+getArrayString(twoSum(numbers,target)));
+        Log.v("twoSum","方法二 输出结果="+getArrayString(twoSum1(numbers,target)));
+        Log.v("twoSum","方法三 输出结果="+getArrayString(twoSum2(numbers,target)));
     }
 
     private static  String getArrayString(int[] array){
