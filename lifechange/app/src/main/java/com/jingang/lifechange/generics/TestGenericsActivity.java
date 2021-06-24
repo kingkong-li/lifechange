@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.jingang.lifechange.R;
 import com.jingang.lifechange.base.BaseActivity;
+import com.jingang.lifechange.innerclass.TestInnerClass;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -28,6 +29,7 @@ public class TestGenericsActivity extends BaseActivity {
             Log.v(TAG,"parameterTypes ="+ActualTypeArgument.toString());
         }
 
+        TestInnerClass.printResult();
 
 
 

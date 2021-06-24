@@ -1,8 +1,5 @@
 package com.jingang.lifechange.algorithm.struct;
 
-import android.os.Bundle;
-
-import com.jingang.lifechange.R;
 import com.jingang.lifechange.base.ActivityInfo;
 import com.jingang.lifechange.base.BaseListActivity;
 
