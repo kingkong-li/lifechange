@@ -58,7 +58,7 @@ public class SortTestActivity extends BaseActivity {
     }
 
     @Override
-    public String getTag() {
+    public String getLabel() {
         return "分类算法";
     }
 }

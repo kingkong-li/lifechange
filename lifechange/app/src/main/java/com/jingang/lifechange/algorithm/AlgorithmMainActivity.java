@@ -6,7 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.jingang.lifechange.R;
-import com.jingang.lifechange.algorithm.struct.MapUseActivity;
+import com.jingang.lifechange.algorithm.struct.StructMainActivity;
+import com.jingang.lifechange.algorithm.struct.map.MapUseActivity;
 import com.jingang.lifechange.base.BaseActivity;
 
 public class AlgorithmMainActivity extends BaseActivity {
@@ -20,7 +21,7 @@ public class AlgorithmMainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(AlgorithmMainActivity.this, MapUseActivity.class);
+                intent.setClass(AlgorithmMainActivity.this, StructMainActivity.class);
                 AlgorithmMainActivity.this.startActivity(intent);
             }
         });
@@ -36,7 +37,7 @@ public class AlgorithmMainActivity extends BaseActivity {
     }
 
     @Override
-    protected String getTag() {
+    protected String getLabel() {
         return "算法主页";
     }
 }

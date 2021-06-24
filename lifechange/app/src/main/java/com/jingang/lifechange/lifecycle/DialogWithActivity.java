@@ -43,7 +43,7 @@ public class DialogWithActivity extends BaseActivity {
         });
     }
     @Override
-    public String getTag() {
+    public String getLabel() {
         return "Activity弹出Dialog生命周期变化";
     }
 }

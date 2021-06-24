@@ -1,8 +1,9 @@
-package com.jingang.lifechange.algorithm.struct;
+package com.jingang.lifechange.algorithm.struct.map;
 
 import android.os.Bundle;
 
 import com.jingang.lifechange.R;
+import com.jingang.lifechange.algorithm.struct.TwoSum;
 import com.jingang.lifechange.base.BaseActivity;
 
 /**

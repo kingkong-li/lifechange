@@ -1,7 +1,7 @@
 package com.jingang.lifechange.algorithm.struct.linkedList.bean;
 
 /**
- * @Description: 尝试自己实现LinkedList
+ * @Description: 尝试自己实现LinkedList --双向链表
  * @Author: jingang.Li
  * @CreateTime: 2021/5/31-9:35 AM
  * @changeTime:

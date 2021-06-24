@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.LearnDisplayActivity"></activity>
+        <activity android:name=".base.BaseListActivity"></activity>
+        <activity android:name=".algorithm.struct.StructMainActivity" />
+        <activity android:name=".ui.LearnDisplayActivity" />
         <activity android:name=".lifecycle.LifeCycleMainActivity" />
         <activity android:name=".lifecycle.StandardActivity" />
         <activity
@@ -21,7 +23,7 @@
         <activity android:name=".algorithm.AlgorithmMainActivity" />
         <activity android:name=".algorithm.struct.linkedList.TestListOperationActivity" />
         <activity android:name=".lifecycle.DialogWithActivity" />
-        <activity android:name=".algorithm.struct.MapUseActivity" />
+        <activity android:name=".algorithm.struct.map.MapUseActivity" />
         <activity android:name=".memory.TestMemoryActivity" />
         <activity android:name=".memory.LeakDemoActivity" />
         <activity android:name=".base.BaseActivity" />

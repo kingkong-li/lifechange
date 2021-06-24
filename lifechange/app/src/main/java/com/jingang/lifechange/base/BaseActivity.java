@@ -20,11 +20,19 @@ public class BaseActivity extends AppCompatActivity {
         if (getSupportActionBar()!=null){
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(getTag());
+            getSupportActionBar().setTitle(getLabel());
         }
         super.onCreate(savedInstanceState);
         Log.v(getTag(),"onCreate");
         setContentView(R.layout.activity_base);
+    }
+
+    /**
+     * 获取每个应用的标题名称
+     * @return
+     */
+    protected String getLabel(){
+       return this.getClass().getSimpleName();
     }
 
     protected String getTag() {

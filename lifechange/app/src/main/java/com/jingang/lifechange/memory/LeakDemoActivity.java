@@ -22,7 +22,7 @@ public class LeakDemoActivity extends BaseActivity {
         mContextList.add(this);
     }
     @Override
-    public String getTag() {
+    public String getLabel() {
         return "内存泄露示例Activity";
     }
 }
