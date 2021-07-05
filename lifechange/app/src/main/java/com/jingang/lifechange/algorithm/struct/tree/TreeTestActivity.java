@@ -1,6 +1,7 @@
 package com.jingang.lifechange.algorithm.struct.tree;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.jingang.lifechange.R;
 import com.jingang.lifechange.algorithm.struct.tree.bean.TreeNode;
@@ -17,6 +18,10 @@ public class TreeTestActivity extends BaseActivity {
         TreeNode treeNode= BaseTreeOperation.generateTree();
         ArrayList<TreeNode> treeNodeArrayList=new ArrayList<>();
         BaseTreeOperation.deepFirstSearchPLR(treeNode,treeNodeArrayList);
+        Log.v(getTag(),"treeNode number ="+
+                new CompleteBinaryTree().calculateNodes(treeNode));
+        Log.v(getTag(),"treeNode number ="+
+                new CompleteBinaryTree().calculateNodes2(treeNode));
     }
 
 

@@ -25,6 +25,10 @@ public class StructMainActivity extends BaseListActivity {
         activityInfo1.labelName="Array学习主页";
         activityInfos.add(activityInfo1);
 
+        ActivityInfo activityInfo2= new ActivityInfo();
+        activityInfo2.className="com.jingang.lifechange.algorithm.struct.tree.TreeTestActivity";
+        activityInfo2.labelName="tree学习主页";
+        activityInfos.add(activityInfo2);
         return activityInfos;
     }
 }
