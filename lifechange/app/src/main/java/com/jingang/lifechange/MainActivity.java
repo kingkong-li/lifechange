@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.tabs.TabLayout;
 import com.jingang.lifechange.algorithm.AlgorithmMainActivity;
 import com.jingang.lifechange.algorithm.struct.array.ArrayTestActivity;
 import com.jingang.lifechange.base.BaseActivity;
@@ -15,6 +16,7 @@ import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
 import com.jingang.lifechange.lifecycle.StandardActivity;
 import com.jingang.lifechange.memory.LeakDemoActivity;
 import com.jingang.lifechange.ui.LearnDisplayActivity;
+import com.jingang.lifechange.utils.LogUtil;
 
 /**
  * @author jingang
@@ -26,6 +28,7 @@ public class MainActivity extends BaseActivity {
         Debug.startMethodTracing("jg");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         Button button1=findViewById(R.id.bt_go_leaked_activity);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -84,13 +87,15 @@ public class MainActivity extends BaseActivity {
         });
         Debug.stopMethodTracing();
 
-        try {
-            String bb="你好";
-            String aa=null;
-            Log.v("aa","aa.length="+aa.length());
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
+//        try {
+//            int i=0;
+////           Thread.currentThread().interrupt();
+//        }catch (Exception e){
+//            Log.v("JG","catch outer");
+//        } finally {
+//            Log.v("JG","finally outer");
+//        }
+
 
     }
 
