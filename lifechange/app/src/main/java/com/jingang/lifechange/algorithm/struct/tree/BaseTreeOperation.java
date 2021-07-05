@@ -16,19 +16,26 @@ import java.util.Queue;
  */
 class BaseTreeOperation {
 
-    public static TreeNode generateTree(){
-        TreeNode treeRootNode=new TreeNode(0);
-        int[] array=new int[]{0,1,2,3,4,5,6,7,8,9};
-        Queue<TreeNode> treeNodeQueue=new ArrayDeque<>(10);
+    /**
+     * 通过广度优先遍历产生一颗完全二叉树
+     * @param intArray
+     * @return
+     */
+    public static TreeNode generateTree(int[] intArray){
+        TreeNode treeRootNode=new TreeNode(intArray[0]);
+        Queue<TreeNode> treeNodeQueue=new ArrayDeque<>();
         treeNodeQueue.offer(treeRootNode);
         int i=1;
-        while (!treeNodeQueue.isEmpty() && i<10 ){
+        while (!treeNodeQueue.isEmpty() && i<intArray.length ){
             TreeNode currentTreeNode=treeNodeQueue.poll();
-            TreeNode leftTreeNode=new TreeNode(i++);
+            TreeNode leftTreeNode=new TreeNode(intArray[i]);
             currentTreeNode.left=leftTreeNode;
             treeNodeQueue.offer(leftTreeNode);
-            if(i<9){
-                TreeNode rightTreeNode=new TreeNode(i++);
+            i++;
+            // 因为要添加右子树-这里不加一个判断可能会导致越界
+            if(i<intArray.length){
+                TreeNode rightTreeNode=new TreeNode(intArray[i]);
+                i++;
                 currentTreeNode.right=rightTreeNode;
                 treeNodeQueue.offer(rightTreeNode);
             }

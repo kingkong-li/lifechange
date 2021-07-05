@@ -39,26 +39,32 @@ public class CompleteBinaryTree {
 
     }
 
-    public int calculateNodes2(TreeNode treeNode){
+    public int calculateNodes2(TreeNode treeNode,int currentLabel){
         if(treeNode==null){
             return 0;
         }
+//        计算左子树的深度
         TreeNode leftTree=treeNode;
         int leftDeep=1;
         while (leftTree.left!=null){
             leftDeep++;
             leftTree=leftTree.left;
         }
+//        计算右子树-的左子树深度
+
         int rightLeftDeep=1;
         TreeNode temNode=treeNode.right;
         while (temNode!=null){
             rightLeftDeep++;
             temNode=temNode.left;
         }
-        if(leftDeep>rightLeftDeep){
-            return 2*calculateNodes2(treeNode.left);
-        }else{
-            return 2*calculateNodes2(treeNode.right)+1;
+//        通过两个深度判断，最后的节点在哪里
+        if(leftDeep>rightLeftDeep && treeNode.left!=null){
+            return calculateNodes2(treeNode.left,2*currentLabel);
+        }else if(treeNode.right!=null){
+            return calculateNodes2(treeNode.right,2*currentLabel+1);
+        }else {
+            return currentLabel;
         }
 
     }

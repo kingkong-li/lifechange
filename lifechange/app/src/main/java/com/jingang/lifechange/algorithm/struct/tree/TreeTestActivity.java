@@ -15,13 +15,13 @@ public class TreeTestActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tree_test);
-        TreeNode treeNode= BaseTreeOperation.generateTree();
+        TreeNode treeNode= BaseTreeOperation.generateTree(new int[]{1,2,3,4,5,6,7,8,9,10,11,13});
         ArrayList<TreeNode> treeNodeArrayList=new ArrayList<>();
         BaseTreeOperation.deepFirstSearchPLR(treeNode,treeNodeArrayList);
         Log.v(getTag(),"treeNode number ="+
                 new CompleteBinaryTree().calculateNodes(treeNode));
         Log.v(getTag(),"treeNode number ="+
-                new CompleteBinaryTree().calculateNodes2(treeNode));
+                new CompleteBinaryTree().calculateNodes2(treeNode,1));
     }
 
 
