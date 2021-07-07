@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".algorithm.struct.tree.TreeTestActivity"></activity>
+        <activity android:name=".algorithm.struct.vector.VectorAndStackTestActivity"></activity>
+        <activity android:name=".algorithm.struct.tree.TreeTestActivity" />
         <activity android:name=".base.BaseListActivity" />
         <activity android:name=".algorithm.struct.StructMainActivity" />
         <activity android:name=".ui.LearnDisplayActivity" />

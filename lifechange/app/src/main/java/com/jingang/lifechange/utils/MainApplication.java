@@ -17,6 +17,7 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance=this;
+        ActivityManager.start();
     }
 
     public static MainApplication getApplication(){

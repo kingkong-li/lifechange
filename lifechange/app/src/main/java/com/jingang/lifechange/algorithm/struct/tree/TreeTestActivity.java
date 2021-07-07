@@ -6,6 +6,7 @@ import android.util.Log;
 import com.jingang.lifechange.R;
 import com.jingang.lifechange.algorithm.struct.tree.bean.TreeNode;
 import com.jingang.lifechange.base.BaseActivity;
+import com.jingang.lifechange.utils.ActivityManager;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class TreeTestActivity extends BaseActivity {
                 new CompleteBinaryTree().calculateNodes(treeNode));
         Log.v(getTag(),"treeNode number ="+
                 new CompleteBinaryTree().calculateNodes2(treeNode,1));
+        Log.v(getTag(),"current activity="+ActivityManager.getCurrentActivity().getClass().getSimpleName());
     }
 
 
