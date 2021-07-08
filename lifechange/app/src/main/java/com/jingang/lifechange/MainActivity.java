@@ -15,6 +15,7 @@ import com.jingang.lifechange.generics.TestGenericsActivity;
 import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
 import com.jingang.lifechange.lifecycle.StandardActivity;
 import com.jingang.lifechange.memory.LeakDemoActivity;
+import com.jingang.lifechange.thread.OrderMethodClass;
 import com.jingang.lifechange.ui.LearnDisplayActivity;
 import com.jingang.lifechange.utils.LogUtil;
 
@@ -104,5 +105,22 @@ public class MainActivity extends BaseActivity {
         int i=0;
         i++;
         super.onResume();
+        final OrderMethodClass orderMethodClass=new OrderMethodClass();
+        for(int j=2;j<5;j++){
+            final int finalJ = j;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if(finalJ%3==0){
+                        orderMethodClass.method1();
+                    }else if (finalJ%3==1){
+                        orderMethodClass.method2();
+                    }else {
+                        orderMethodClass.method3();
+                    }
+
+                }
+            }).start();
+        }
     }
 }
