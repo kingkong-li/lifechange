@@ -2,15 +2,20 @@ package com.jingang.lifechange.ui;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Choreographer;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 
 import com.jingang.lifechange.R;
 import com.jingang.lifechange.base.BaseActivity;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class LearnDisplayActivity extends BaseActivity {
     private static final String TAG=LearnDisplayActivity.class.getSimpleName();
     private Button mButton;
+    private long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +23,26 @@ public class LearnDisplayActivity extends BaseActivity {
         // setContentView只是创建好需要的资源，比如phoneWindow，建立他们之间的通信关系
         setContentView(R.layout.activity_learn_display);
         mButton=findViewById(R.id.button);
+        getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
+            @Override
+            public void onDraw() {
+                Log.v(TAG,"onDecorView draw button width="+mButton.getWidth()+", height="+mButton.getHeight());
+            }
+        });
         Log.v(TAG,"onCreate button width="+mButton.getWidth()+", height="+mButton.getHeight());
+
+
+        Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
+            @Override
+            public void doFrame(long frameTimeNanos) {
+
+                if(startTime==0){
+                    startTime=frameTimeNanos;
+                    Log.v(TAG,"Choreographer begin="+new Date(startTime).toString());
+                }
+
+            }
+        });
     }
 
     @Override
@@ -31,6 +55,7 @@ public class LearnDisplayActivity extends BaseActivity {
         Log.v(TAG,"before Super.onResume button width="+mButton.getWidth()+", height="+mButton.getHeight());
         super.onResume();
         Log.v(TAG,"after Super.onResume button width="+mButton.getWidth()+", height="+mButton.getHeight());
+
 
         mButton.getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
             @Override

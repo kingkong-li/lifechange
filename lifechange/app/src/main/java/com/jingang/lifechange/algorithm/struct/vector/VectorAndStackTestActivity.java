@@ -18,5 +18,7 @@ public class VectorAndStackTestActivity extends BaseActivity {
         minMaxStack.push(4);
         Log.v(getTag(),"MinMaxStack peek="+minMaxStack.peek()+" max="+
                 minMaxStack.getMax()+" min="+minMaxStack.getMin());
+
+        new HanNuoTa().getMoveStepTest();
     }
 }
