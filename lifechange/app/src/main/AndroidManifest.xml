@@ -38,7 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".algorithm.SortTestActivity" />
+        <activity android:name=".algorithm.sort.SortTestActivity" />
     </application>
 
 </manifest>

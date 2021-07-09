@@ -1,16 +1,15 @@
-package com.jingang.lifechange.algorithm;
+package com.jingang.lifechange.algorithm.sort;
 
 import android.os.Bundle;
 import android.util.Log;
 
 import com.jingang.lifechange.R;
 import com.jingang.lifechange.algorithm.dynamic.dynamicPlan;
-import com.jingang.lifechange.algorithm.sort.QuickSort;
 import com.jingang.lifechange.base.BaseActivity;
 import com.jingang.lifechange.utils.PublicThreadPools;
 
 /**
- * @Description: 测试分类算法的Activity
+ * @Description: 测试排序算法的Activity
  * @Author:
  * @CreateTime:2021/5/25-11:09 AM
  * @changeTime:
@@ -52,6 +51,7 @@ public class SortTestActivity extends BaseActivity {
                 Thread.currentThread().setName(" my TaskName");
             }
         });
+
 
 
 
