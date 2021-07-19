@@ -9,24 +9,21 @@ import android.util.Log;
  * @changeTime:
  */
 public class LogUtil {
-//    public static void throwAError(){
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    String bb="你好";
-//                    int[] aa=new int[]{1,2,3};
-//                    System.exit(0);
-//                    Log.v("JG","aa.length="+aa[100]);
-//                }catch (NullPointerException e){
-//                    Log.v("JG","catch inner");
-//                    e.printStackTrace();
-//                }finally {
-//                    Log.v("JG","finally inner");
-//                }
-//
-//            }
-//        }).start();
-//
-//    }
+    public static void throwAError(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                   int i=1;
+                }catch (NullPointerException e){
+                    Log.v("JG","catch inner");
+                    e.printStackTrace();
+                }finally {
+                   String a="hahaha";
+                }
+
+            }
+        }).start();
+
+    }
 }

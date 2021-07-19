@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadFactory;
 /**
  * @Description: 线程池
  * @Author: kingkong
- * @CreateTime:2020/8/25-2:23 PM
+ * @CreateTime: 2020/8/25-2:23 PM
  * @changeTime:
  */
 public class PublicThreadPools{

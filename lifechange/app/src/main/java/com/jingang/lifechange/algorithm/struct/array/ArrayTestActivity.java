@@ -43,6 +43,8 @@ public class ArrayTestActivity extends BaseActivity {
         Log.v(TAG,"use method 2 getSubArray = "+BaseArrayOption.getIntArrayString(
                 new ShortestDisorderArray().findShortestDisorderSubArray2(array3)));
 
+        int[] contributions=new int[]{8, 4, 2, 1, 3, 6, 7, 9, 5};
+        Log.v(TAG,"getMinCandies= "+new MinCandies().getMinCandies(contributions));
 
     }
 }
