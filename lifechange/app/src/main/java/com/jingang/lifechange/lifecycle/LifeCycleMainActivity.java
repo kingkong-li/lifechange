@@ -8,6 +8,9 @@ import android.widget.Button;
 import com.jingang.lifechange.R;
 import com.jingang.lifechange.base.BaseActivity;
 
+/**
+ * @author lijingang02
+ */
 public class LifeCycleMainActivity extends BaseActivity {
 
     @Override
@@ -56,6 +59,15 @@ public class LifeCycleMainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(LifeCycleMainActivity.this, StandardActivity.class);
+                LifeCycleMainActivity.this.startActivity(intent);
+            }
+        });
+        Button button6=findViewById(R.id.bt_persist_activity);
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(LifeCycleMainActivity.this, PersistActivity.class);
                 LifeCycleMainActivity.this.startActivity(intent);
             }
         });

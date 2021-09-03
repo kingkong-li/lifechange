@@ -48,5 +48,13 @@
         android:id="@+id/bt_single_task_activity"
         android:textStyle="bold"
         android:text="查看singleTask模式启动的Activity" />
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_persist_activity"
+        android:textStyle="bold"
+        android:text="查看有从硬盘恢复数据的Activity" />
 
 </LinearLayout>

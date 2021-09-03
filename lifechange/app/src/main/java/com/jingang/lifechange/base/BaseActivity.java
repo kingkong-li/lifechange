@@ -1,9 +1,11 @@
 package com.jingang.lifechange.base;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.jingang.lifechange.R;
@@ -76,6 +78,13 @@ public class BaseActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.v(getTag(),"onStop");
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.v(getTag(),"onSaveInstanceState");
     }
 
     @Override

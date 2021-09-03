@@ -75,7 +75,11 @@ public class LearnDisplayActivity extends BaseActivity {
 //        首先 performActivityResume 然后才执行view的生命周期
     }
 
-
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        Log.v(TAG,"onWindowFocusChanged hasFocus="+hasFocus+Log.getStackTraceString(new Throwable()));
+    }
 
     @Override
     protected void onPause() {
