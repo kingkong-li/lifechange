@@ -13,6 +13,7 @@ import java.io.Serializable;
 
 /**
  * 启动模式 和 Activity 启动流程结合起来 讲解下
+ * @author lijingang02
  */
 public class StandardActivity extends BaseActivity {
 

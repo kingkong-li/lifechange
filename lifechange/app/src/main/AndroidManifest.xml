@@ -12,9 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".lifecycle.SingleTaskActivity"
+            android:launchMode="singleTask"
+            android:exported="true" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".lifecycle.PersistActivity"
-            android:persistableMode="persistAcrossReboots"
             android:exported="true"
+            android:persistableMode="persistAcrossReboots"
             tools:targetApi="lollipop" />
         <activity android:name=".algorithm.struct.vector.VectorAndStackTestActivity" />
         <activity android:name=".algorithm.struct.tree.TreeTestActivity" />
@@ -37,13 +49,7 @@
         <activity android:name=".base.BaseActivity" />
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleInstance">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:launchMode="singleTask" />
         <activity android:name=".algorithm.sort.SortTestActivity" />
     </application>
 

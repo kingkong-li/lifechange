@@ -58,7 +58,7 @@ public class LifeCycleMainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(LifeCycleMainActivity.this, StandardActivity.class);
+                intent.setClass(LifeCycleMainActivity.this, SingleTaskActivity.class);
                 LifeCycleMainActivity.this.startActivity(intent);
             }
         });
