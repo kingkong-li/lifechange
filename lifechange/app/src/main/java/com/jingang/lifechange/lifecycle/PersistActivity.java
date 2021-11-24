@@ -36,7 +36,8 @@ public class PersistActivity extends BaseActivity {
 
     /**
      * 仔细看这个方法  由于它处于PersistActivity的内部 所以它的作用可以访问到私有变量
-     * 这就是内部类可以访问外部类的原理
+     * 这就是内部类可以访问外部类私有字段的原理。也就是说，当我们写一个内部类的时候，就会把外部类
+     * 实例给到内部类，如果我们需要获取/设置 某个外部类字段，编译时候 就会生成这种静态的方法，使我们能够进行操作。
      * @param persistActivity
      * @return
      */

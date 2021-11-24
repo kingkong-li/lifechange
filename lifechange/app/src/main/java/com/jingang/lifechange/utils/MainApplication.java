@@ -1,7 +1,11 @@
 package com.jingang.lifechange.utils;
 
 import android.app.Application;
+import android.os.StrictMode;
 
+import com.jingang.lifechange.BuildConfig;
+import com.jingang.lifechange.MainActivity;
+import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
 
 
 /**
@@ -18,6 +22,27 @@ public class MainApplication extends Application {
         super.onCreate();
         sInstance=this;
         ActivityManager.start();
+        initStrictModeConfig();
+
+    }
+
+    private void initStrictModeConfig() {
+        if(BuildConfig.DEBUG){
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectCustomSlowCalls()//API等级11，使用StrictMode.noteSlowCode
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()   // or .detectAll() for all detectable problems
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .detectActivityLeaks()
+                    .setClassInstanceLimit(MainActivity.class,0)
+                    .penaltyLog()
+                    .build());
+        }
     }
 
     public static MainApplication getApplication(){
