@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +39,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected String getTag() {
-        return this.getClass().getSimpleName();
+        return "lifeCycle:"+this.getClass().getSimpleName();
     }
 
     @Override
@@ -66,6 +67,12 @@ public class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.v(getTag(),"onResume");
+        getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
+            @Override
+            public void onDraw() {
+                Log.v(getTag(),"onDecorView draw ,first draw");
+            }
+        });
     }
 
     @Override

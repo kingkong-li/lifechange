@@ -1,11 +1,12 @@
 package com.jingang.lifechange.utils;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.StrictMode;
+import android.util.Log;
 
 import com.jingang.lifechange.BuildConfig;
 import com.jingang.lifechange.MainActivity;
-import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
 
 
 /**
@@ -15,10 +16,18 @@ import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
  * @changeTime:
  */
 public class MainApplication extends Application {
+    private static final String TAG = "lifeCycle:"+MainApplication.class.getName();
     private static MainApplication sInstance;
 
     @Override
+    protected void attachBaseContext(Context base) {
+        Log.v(TAG,"attachBaseContext");
+        super.attachBaseContext(base);
+    }
+
+    @Override
     public void onCreate() {
+        Log.v(TAG,"onCreate");
         super.onCreate();
         sInstance=this;
         ActivityManager.start();
@@ -44,6 +53,8 @@ public class MainApplication extends Application {
                     .build());
         }
     }
+
+
 
     public static MainApplication getApplication(){
         return sInstance;
