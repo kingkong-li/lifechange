@@ -3,6 +3,7 @@ package com.jingang.lifechange;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -122,5 +123,25 @@ public class MainActivity extends BaseActivity {
                 }
             }).start();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        long i=0;
+        while(true){
+            i=Math.round(Math.random()*10000000);
+            if(i==1){
+                Log.i(getTag(),"finally onStop end");
+                break;
+
+            }
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
     }
 }

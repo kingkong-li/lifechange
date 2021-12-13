@@ -71,5 +71,14 @@ public class LifeCycleMainActivity extends BaseActivity {
                 LifeCycleMainActivity.this.startActivity(intent);
             }
         });
+        Button button7=findViewById(R.id.bt_fragment_activity);
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(LifeCycleMainActivity.this, FragmentContainerActivity.class);
+                LifeCycleMainActivity.this.startActivity(intent);
+            }
+        });
     }
 }
