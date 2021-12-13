@@ -15,6 +15,7 @@ import com.jingang.lifechange.base.BaseActivity;
 import com.jingang.lifechange.generics.TestGenericsActivity;
 import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
 import com.jingang.lifechange.lifecycle.StandardActivity;
+import com.jingang.lifechange.location.LocationMainActivity;
 import com.jingang.lifechange.memory.LeakDemoActivity;
 import com.jingang.lifechange.thread.OrderMethodClass;
 import com.jingang.lifechange.ui.LearnDisplayActivity;
@@ -84,6 +85,15 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this, LearnDisplayActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+        Button button7=findViewById(R.id.bt_learn_location);
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(MainActivity.this, LocationMainActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });

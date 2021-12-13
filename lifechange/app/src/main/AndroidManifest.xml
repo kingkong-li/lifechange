@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jingang.lifechange">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.LOCATION_HARDWARE"/>
+
     <application
         android:name=".utils.MainApplication"
         android:allowBackup="true"
@@ -11,6 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".location.LocationMainActivity"
+            android:exported="true" />
         <activity
             android:name=".lifecycle.FragmentContainerActivity"
             android:exported="true" />
