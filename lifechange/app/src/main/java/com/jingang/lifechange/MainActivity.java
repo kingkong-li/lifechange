@@ -99,6 +99,7 @@ public class MainActivity extends BaseActivity {
         });
         Debug.stopMethodTracing();
 
+
 //        try {
 //            int i=0;
 ////           Thread.currentThread().interrupt();
