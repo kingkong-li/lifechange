@@ -6,8 +6,11 @@ import android.view.Choreographer;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 
+import androidx.lifecycle.Observer;
+
 import com.jingang.lifechange.R;
 import com.jingang.lifechange.base.BaseActivity;
+import com.jingang.lifechange.utils.LiveDataBus;
 
 import java.sql.Time;
 import java.util.Date;
@@ -43,6 +46,14 @@ public class LearnDisplayActivity extends BaseActivity {
 
             }
         });
+
+        LiveDataBus.TEST_DATA_FLOW.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer value) {
+                Log.v(getTag(),"onChanged value="+value+Log.getStackTraceString(new Throwable()));
+            }
+        });
+
 
 //        try {
 //            Thread.sleep(2000);

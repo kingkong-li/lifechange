@@ -3,23 +3,20 @@ package com.jingang.lifechange;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.material.tabs.TabLayout;
 import com.jingang.lifechange.algorithm.AlgorithmMainActivity;
 import com.jingang.lifechange.algorithm.struct.array.ArrayTestActivity;
 import com.jingang.lifechange.base.BaseActivity;
 import com.jingang.lifechange.generics.TestGenericsActivity;
 import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
-import com.jingang.lifechange.lifecycle.StandardActivity;
 import com.jingang.lifechange.location.LocationMainActivity;
 import com.jingang.lifechange.memory.LeakDemoActivity;
 import com.jingang.lifechange.thread.OrderMethodClass;
 import com.jingang.lifechange.ui.LearnDisplayActivity;
-import com.jingang.lifechange.utils.LogUtil;
+import com.jingang.lifechange.utils.LiveDataBus;
 
 /**
  * @author jingang
@@ -31,7 +28,6 @@ public class MainActivity extends BaseActivity {
         Debug.startMethodTracing("jg");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Button button1=findViewById(R.id.bt_go_leaked_activity);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +93,8 @@ public class MainActivity extends BaseActivity {
                 MainActivity.this.startActivity(intent);
             }
         });
+        LiveDataBus.TEST_DATA_FLOW.postValue(7);
+        new KotlinBase(); new KotlinBase(); new KotlinBase();
         Debug.stopMethodTracing();
 
 
