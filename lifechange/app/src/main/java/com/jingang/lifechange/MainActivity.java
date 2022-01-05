@@ -94,7 +94,6 @@ public class MainActivity extends BaseActivity {
             }
         });
         LiveDataBus.TEST_DATA_FLOW.postValue(7);
-        new KotlinBase(); new KotlinBase(); new KotlinBase();
         Debug.stopMethodTracing();
 
 
@@ -137,15 +136,15 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        long i=0;
-        while(true){
-            i=Math.round(Math.random()*10000000);
-            if(i==1){
-                Log.i(getTag(),"finally onStop end");
-                break;
-
-            }
-        }
+//        long i=0;
+//        while(true){
+//            i=Math.round(Math.random()*10000000);
+//            if(i==1){
+//                Log.i(getTag(),"finally onStop end");
+//                break;
+//
+//            }
+//        }
     }
 
     @Override

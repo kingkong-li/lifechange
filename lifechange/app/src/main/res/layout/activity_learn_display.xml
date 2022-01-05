@@ -6,9 +6,10 @@
     tools:context=".ui.LearnDisplayActivity">
 
     <Button
+        android:layout_centerInParent="true"
         android:id="@+id/button"
         android:text="match_parent_button"
         android:textSize="15sp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
 </RelativeLayout>

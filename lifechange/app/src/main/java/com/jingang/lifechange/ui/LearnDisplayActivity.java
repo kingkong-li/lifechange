@@ -3,6 +3,7 @@ package com.jingang.lifechange.ui;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Choreographer;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 
@@ -26,6 +27,13 @@ public class LearnDisplayActivity extends BaseActivity {
         // setContentView只是创建好需要的资源，比如phoneWindow，建立他们之间的通信关系
         setContentView(R.layout.activity_learn_display);
         mButton=findViewById(R.id.button);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v(getTag(),"onCreate button click");
+            }
+        });
+
         getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
             @Override
             public void onDraw() {
@@ -81,6 +89,7 @@ public class LearnDisplayActivity extends BaseActivity {
                 Log.v(TAG,"addOnDrawListener button width="+mButton.getWidth()+", height="+mButton.getHeight());
             }
         });
+
         mButton.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
