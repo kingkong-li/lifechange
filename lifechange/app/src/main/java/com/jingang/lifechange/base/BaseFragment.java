@@ -33,7 +33,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.v(getTag(),"onCreateView");
+        Log.v(getTag(),"onCreateView"+Log.getStackTraceString(new Throwable()));
         return inflater.inflate(R.layout.fragment_base, container, false);
     }
 
@@ -45,7 +45,7 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.v(getTag(),"onAttachFragment");
+        Log.v(getTag(),"onViewCreated");
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -65,6 +65,12 @@ public abstract class BaseFragment extends Fragment {
     public void onPause() {
         Log.v(getTag(),"onPause");
         super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        Log.v(getTag(),"onStop");
+        super.onStop();
     }
 
     @Override

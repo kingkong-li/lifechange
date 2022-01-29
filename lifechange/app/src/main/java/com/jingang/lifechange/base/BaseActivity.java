@@ -1,12 +1,16 @@
 package com.jingang.lifechange.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.jingang.lifechange.R;
@@ -26,9 +30,19 @@ public class BaseActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(getLabel());
         }
         super.onCreate(savedInstanceState);
-        Log.v(getTag(),"onCreate");
         setContentView(R.layout.activity_base);
+        Log.v(getTag(),"onCreate"+Log.getStackTraceString(new Throwable()));
     }
+
+    @Nullable
+    @Override
+    public View onCreateView(@Nullable View parent, @NonNull String name, @NonNull Context context,
+                             @NonNull AttributeSet attrs) {
+        Log.v(getTag(),"onCreateView");
+        return super.onCreateView(parent, name, context, attrs);
+
+    }
+
 
     /**
      * 获取每个应用的标题名称
@@ -45,7 +59,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.v(getTag(),"onStart");
+        Log.v(getTag(),"onStart"+Log.getStackTraceString(new Throwable()));
     }
 
     @Override
@@ -66,7 +80,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.v(getTag(),"onResume");
+        Log.v(getTag(),"onResume"+Log.getStackTraceString(new Throwable()));
         time=0;
         getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
             @Override
