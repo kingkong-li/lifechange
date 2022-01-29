@@ -31,7 +31,7 @@ public class BaseActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-        Log.v(getTag(),"onCreate"+Log.getStackTraceString(new Throwable()));
+        Log.v(getTag(),"onCreate hashcode="+hashCode()+Log.getStackTraceString(new Throwable()));
     }
 
     @Nullable
@@ -117,6 +117,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.v(getTag(),"onDestroy");
+        Log.v(getTag(),"onDestroy hashcode="+hashCode());
     }
 }
