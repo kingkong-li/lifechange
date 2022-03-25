@@ -1,15 +1,16 @@
-package com.jingang.lifechange.ui
+package com.jingang.lifechange.widget
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.content.Intent
 import android.widget.RemoteViews
 import com.jingang.lifechange.R
 
 /**
  * Implementation of App Widget functionality.
  */
-class LearnAppWidget : AppWidgetProvider() {
+class MyAppWidgetProvider : AppWidgetProvider() {
 
     override fun onUpdate(
         context: Context,
@@ -24,10 +25,16 @@ class LearnAppWidget : AppWidgetProvider() {
 
     override fun onEnabled(context: Context) {
         // Enter relevant functionality for when the first widget is created
+
     }
 
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
+    }
+
+    override fun onReceive(context: Context?, intent: Intent?) {
+        super.onReceive(context, intent)
+        WidgetDataManager.getInstance().onReceiveUpdateIntent(intent)
     }
 }
 
@@ -39,7 +46,6 @@ internal fun updateAppWidget(
     val widgetText = context.getString(R.string.appwidget_text)
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.learn_app_widget)
-    views.setTextViewText(R.id.appwidget_text, widgetText)
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)

@@ -14,12 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver
-            android:name=".ui.LearnAppWidget"
+            android:name=".widget.MyAppWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="action_life_change_click_image"/>
             </intent-filter>
 
+            <!--下面两个是必要的，android:name标记了该receiver是一个AppWidgetProvider -->
+            <!--android:resource 记录了初始化的时候加载的widget view，这个？        -->
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/learn_app_widget_info" />

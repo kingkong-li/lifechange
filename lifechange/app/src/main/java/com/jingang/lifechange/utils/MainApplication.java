@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.jingang.lifechange.BuildConfig;
 import com.jingang.lifechange.MainActivity;
+import com.jingang.lifechange.widget.WidgetDataManager;
 
 
 /**
@@ -32,6 +33,7 @@ public class MainApplication extends Application {
         sInstance=this;
         ActivityManager.start();
         initStrictModeConfig();
+        WidgetDataManager.init(this);
 
     }
 

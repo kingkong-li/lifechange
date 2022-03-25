@@ -8,7 +8,7 @@ android {
     defaultConfig {
 //        这里貌似决定对外的包名
         applicationId "com.jingang.lifechange"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
