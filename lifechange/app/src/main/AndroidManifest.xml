@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jingang.lifechange">
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
     <application
         android:name=".utils.MainApplication"
         android:allowBackup="true"
@@ -13,16 +15,20 @@
         android:roundIcon="@mipmap/launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.gesture.GestureShowActivity"
+            android:exported="true" />
+
         <receiver
             android:name=".widget.MyAppWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="action_life_change_click_image"/>
+                <action android:name="action_life_change_click_image" />
             </intent-filter>
 
-            <!--下面两个是必要的，android:name标记了该receiver是一个AppWidgetProvider -->
-            <!--android:resource 记录了初始化的时候加载的widget view，这个？        -->
+            <!-- 下面两个是必要的，android:name标记了该receiver是一个AppWidgetProvider -->
+            <!-- android:resource 记录了初始化的时候加载的widget view，这个？ -->
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/learn_app_widget_info" />

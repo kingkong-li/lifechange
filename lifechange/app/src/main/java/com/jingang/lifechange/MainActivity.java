@@ -16,6 +16,7 @@ import com.jingang.lifechange.location.LocationMainActivity;
 import com.jingang.lifechange.memory.LeakDemoActivity;
 import com.jingang.lifechange.thread.OrderMethodClass;
 import com.jingang.lifechange.ui.LearnDisplayActivity;
+import com.jingang.lifechange.ui.gesture.GestureShowActivity;
 import com.jingang.lifechange.utils.LiveDataBus;
 
 /**
@@ -80,7 +81,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(MainActivity.this, LearnDisplayActivity.class);
+                intent.setClass(MainActivity.this, GestureShowActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });
