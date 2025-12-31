@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.jingang.lifechange.aidl.AidlClientActivity;
 import com.jingang.lifechange.algorithm.AlgorithmMainActivity;
 import com.jingang.lifechange.algorithm.struct.array.ArrayTestActivity;
 import com.jingang.lifechange.base.BaseActivity;
@@ -91,6 +92,15 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this, LocationMainActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+        Button button8=findViewById(R.id.bt_learn_aidl);
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(MainActivity.this, AidlClientActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });

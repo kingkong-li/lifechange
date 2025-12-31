@@ -64,6 +64,14 @@
         android:id="@+id/bt_learn_location"
         android:textStyle="bold"
         android:text="学习定位" />
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_learn_aidl"
+        android:textStyle="bold"
+        android:text="学习aidl" />
 
 
 </LinearLayout>

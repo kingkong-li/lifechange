@@ -6,7 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-
+    <queries>
+        <package android:name="com.example.networklib" />
+    </queries>
     <application
         android:name=".utils.MainApplication"
         android:allowBackup="true"
@@ -15,6 +17,9 @@
         android:roundIcon="@mipmap/launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".aidl.AidlClientActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.gesture.GestureShowActivity"
             android:exported="true" />
