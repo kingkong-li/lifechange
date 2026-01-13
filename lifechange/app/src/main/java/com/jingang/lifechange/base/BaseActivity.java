@@ -84,7 +84,7 @@ public class BaseActivity extends AppCompatActivity {
         getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
             @Override
             public void onDraw() {
-                Log.v(getTag(),"onDecorView draw , draw time"+time);
+//                Log.v(getTag(),"onDecorView draw , draw time"+time);
                 addTime();
             }
         });

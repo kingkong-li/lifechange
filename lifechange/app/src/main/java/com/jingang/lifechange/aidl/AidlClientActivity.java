@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -18,8 +19,10 @@ import com.jingang.lifechange.base.BaseActivity;
 public class AidlClientActivity extends BaseActivity {
 
     private static final String TAG = "AidlClientActivity";
-    private ICommonInterface mRemoteHandler;
+    private ICommonInterface mRemoteInterface;
     private TextView mTextView;
+
+    private final Handler UIHandler = new Handler(getMainLooper());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,7 @@ public class AidlClientActivity extends BaseActivity {
         mTextView = findViewById(R.id.textView);
         connectRemoteService();
     }
+
 
     private void connectRemoteService() {
         Intent intent = new Intent("com.example.networklib.MyService");
@@ -41,13 +45,19 @@ public class AidlClientActivity extends BaseActivity {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             Log.v(TAG, "onServiceConnected");
-            mRemoteHandler = ICommonInterface.Stub.asInterface(service);
+            mRemoteInterface = ICommonInterface.Stub.asInterface(service);
             try {
-                mRemoteHandler.registerCallback(new ICommonCallback.Stub() {
+                mRemoteInterface.registerCallback(new ICommonCallback.Stub() {
                     @Override
-                    public void onEvent(String code, String msg) throws RemoteException {
+                    public void onEvent(final String code, final String msg) throws RemoteException {
                         Log.v(TAG, "onEvent code=" + code + " msg=" + msg);
-                        mTextView.setText(String.format("%s:%s", code, msg));
+                        UIHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mTextView.setText(String.format("%s:%s", code, msg));
+                            }
+                        });
+
                     }
                 });
             } catch (RemoteException e) {
