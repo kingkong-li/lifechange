@@ -22,12 +22,13 @@ public class AidlClientActivity extends BaseActivity {
     private ICommonInterface mRemoteInterface;
     private TextView mTextView;
 
-    private final Handler UIHandler = new Handler(getMainLooper());
+    private Handler UIHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aidl_client);
         mTextView = findViewById(R.id.textView);
+        UIHandler = new Handler(getMainLooper());
         connectRemoteService();
     }
 
