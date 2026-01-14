@@ -48,6 +48,7 @@ public class AidlClientActivity extends BaseActivity {
             Log.v(TAG, "onServiceConnected");
             mRemoteInterface = ICommonInterface.Stub.asInterface(service);
             try {
+                mRemoteInterface.set("Client onServiceConnected");
                 mRemoteInterface.registerCallback(new ICommonCallback.Stub() {
                     @Override
                     public void onEvent(final String code, final String msg) throws RemoteException {
@@ -77,6 +78,12 @@ public class AidlClientActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        try {
+            mRemoteInterface.set("Client Activity onDestroy");
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+        mRemoteInterface = null;
         this.unbindService(mConnection);
     }
 }
