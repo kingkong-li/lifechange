@@ -72,6 +72,15 @@
         android:id="@+id/bt_learn_aidl"
         android:textStyle="bold"
         android:text="学习aidl" />
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_learn_blue_tooth"
+        android:textStyle="bold"
+        android:text="学习蓝牙"
+        tools:ignore="HardcodedText" />
 
 
 </LinearLayout>

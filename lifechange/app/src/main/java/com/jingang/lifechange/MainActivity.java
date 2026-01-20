@@ -11,6 +11,7 @@ import com.jingang.lifechange.aidl.AidlClientActivity;
 import com.jingang.lifechange.algorithm.AlgorithmMainActivity;
 import com.jingang.lifechange.algorithm.struct.array.ArrayTestActivity;
 import com.jingang.lifechange.base.BaseActivity;
+import com.jingang.lifechange.blue.tooth.BlueDeviceListActivity;
 import com.jingang.lifechange.generics.TestGenericsActivity;
 import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
 import com.jingang.lifechange.location.LocationMainActivity;
@@ -101,6 +102,15 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this, AidlClientActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+        Button button9=findViewById(R.id.bt_learn_blue_tooth);
+        button9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(MainActivity.this, BlueDeviceListActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });

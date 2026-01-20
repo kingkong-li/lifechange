@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
 
     defaultConfig {
 //      这里决定对外的包名
         applicationId "com.jingang.lifechange"
-        minSdkVersion 17
-        targetSdkVersion 31
+        minSdkVersion 25
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -24,6 +24,10 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
