@@ -1,6 +1,7 @@
 package com.jingang.lifechange.blue.tooth;
 
 import android.util.Log;
+import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jingang.lifechange.R;
+import com.jingang.lifechange.utils.TimeUtil;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyViewHolder> {
@@ -24,6 +27,7 @@ public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyView
 
     public void setData(List<BtPeer> data) {
         mData = data;
+        sortBtPeers(mData);
         notifyDataSetChanged();
     }
 
@@ -41,6 +45,7 @@ public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyView
         holder.mDeviceName.setText("蓝牙设备名称："+peer.name);
         holder.mDeviceAddress.setText("蓝牙设备Mac地址："+peer.address);
         holder.mDeviceRssi.setText("蓝牙设备信号强度："+ peer.rssi);
+        holder.mLastUpdateTime.setText("最后更新时间："+ TimeUtil.formatTimestamp(peer.lastUpdateTime));
 
     }
 
@@ -56,11 +61,23 @@ public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyView
         private final TextView mDeviceAddress;
         private final TextView mDeviceRssi;
 
+        private final TextView mLastUpdateTime;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mDeviceName = itemView.findViewById(R.id.blue_device_name);
             mDeviceAddress = itemView.findViewById(R.id.blue_device_mac_address);
             mDeviceRssi = itemView.findViewById(R.id.blue_device_rssi);
+            mLastUpdateTime = itemView.findViewById(R.id.last_update_time);
         }
+    }
+    // 使用静态Comparator避免重复创建
+    public void sortBtPeers(List<BtPeer> peerList) {
+        peerList.sort(
+                // 第一优先级：名字是否有值 (有名字的排前面)
+                Comparator.comparing((BtPeer p) -> p.name == null || p.name.isEmpty())
+                        // 第二优先级：RSSI 信号强度 (数值越大代表信号越强，所以用降序)
+                        .thenComparing(Comparator.comparingInt((BtPeer p) -> p.rssi).reversed())
+        );
     }
 }

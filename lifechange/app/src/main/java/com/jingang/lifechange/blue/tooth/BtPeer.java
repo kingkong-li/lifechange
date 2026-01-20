@@ -7,13 +7,13 @@ public final class BtPeer {
     public final String address;
     public final String name;
     public final int rssi;
-    public final long lastSeen;
+    public final long lastUpdateTime;
 
     public BtPeer(String address, String name, int rssi, long lastSeen) {
         this.address = address;
         this.name = name;
         this.rssi = rssi;
-        this.lastSeen = lastSeen;
+        this.lastUpdateTime = lastSeen;
     }
 
     public BtPeer update(int newRssi) {
@@ -32,7 +32,7 @@ public final class BtPeer {
                 "address='" + address + '\'' +
                 ", name='" + name + '\'' +
                 ", rssi=" + rssi +
-                ", lastSeen=" + lastSeen +
+                ", lastSeen=" + lastUpdateTime +
                 '}';
     }
 }
