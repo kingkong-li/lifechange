@@ -2,14 +2,18 @@ package com.jingang.lifechange.blue.tooth;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.util.Log;
 
 import androidx.annotation.RequiresPermission;
 
 import java.io.IOException;
 
 public class BtServer {
+
+    private static final String TAG = BtServer.class.getSimpleName();
 
     private final BluetoothAdapter adapter;
     private BluetoothServerSocket serverSocket;
@@ -50,10 +54,16 @@ public class BtServer {
         while (running) {
             try {
                 BluetoothSocket socket = serverSocket.accept(); // 阻塞
-                if (socket != null && listener != null) {
+                if (socket == null) {
+                    return;
+                }
+                BluetoothDevice device = socket.getRemoteDevice();
+                Log.d(TAG, "acceptLoop: " + device.getName() + " " + device.getAddress()+
+                        device.getName());
+                if (listener != null) {
                     BtConnection conn = new BtConnection(socket);
                     listener.onClientConnected(conn);
-                    conn.start();
+                    conn.startReadData();
                 }
             } catch (IOException e) {
                 if (!running) break;

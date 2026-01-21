@@ -5,15 +5,20 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
+import androidx.annotation.UiThread;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jingang.lifechange.R;
 import com.jingang.lifechange.base.BaseActivity;
+import com.jingang.lifechange.utils.PublicThreadPools;
+
+import java.io.IOException;
 
 public class BlueDeviceListActivity extends BaseActivity {
     private static final String TAG = BlueDeviceListActivity.class.getSimpleName();
@@ -21,6 +26,8 @@ public class BlueDeviceListActivity extends BaseActivity {
     private static final int PERMISSION_REQUEST_CODE = 1001;
     private RecyclerView mBluetoothDeviceList;
     private BlueListAdapter mBlueListAdapter;
+    private TextView mCurrentConnectDeviceInfoTextView;
+    private TextView mRemoteDataTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +39,87 @@ public class BlueDeviceListActivity extends BaseActivity {
         mBluetoothDeviceList.setLayoutManager(layoutManager);
         mBlueListAdapter = new BlueListAdapter();
         mBluetoothDeviceList.setAdapter(mBlueListAdapter);
+        mCurrentConnectDeviceInfoTextView = findViewById(R.id.server_content_title);
+        mRemoteDataTextView = findViewById(R.id.blue_server_content);
 
         deviceDiscoveryViewModel = new DeviceDiscoveryViewModel();
         deviceDiscoveryViewModel.getNewDevices().observe(this, peers -> {
-            Log.v(TAG, "find peers=" + peers.toString());
+//            Log.v(TAG, "find peers=" + peers.toString());
             mBlueListAdapter.setData(peers);
         });
+
+
+    }
+
+    private void setBlueListListener() {
+        BtClient client = new BtClient();
+        mBlueListAdapter.setOnClickListener(new ItemSelectListener() {
+            @Override
+            public void onItemSelect(BtPeer peer) {
+                Log.v(TAG, "onItemSelect blueDevice=" + peer.address);
+                try {
+                    BtConnection connection = client.connect(peer.address);
+                    connection.setListener(new BtConnection.Listener() {
+                        @Override
+                        public void onMessage(byte[] data, int length) {
+                            Log.d(TAG+"CLIENT", new String(data, 0, length));
+                        }
+
+                        @Override
+                        public void onDisconnected(Exception e) {
+                            Log.d(TAG+"CLIENT", "Disconnected");
+                        }
+                    });
+                    connection.send("Hello".getBytes());
+                } catch (Exception e) {
+                    Log.e(TAG+"CLIENT", "Error"+ e);
+                }
+
+
+            }
+        });
+    }
+
+    private void startBtServer() {
+        BtServer server = new BtServer();
+        server.setListener(new BtServer.Listener() {
+            @Override
+            public void onClientConnected(BtConnection connection) {
+                Log.d(TAG, "onClientConnected address= "+connection.getConnectDeviceAddress());
+                PublicThreadPools.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mCurrentConnectDeviceInfoTextView.setText("当前连接的设备名称："+
+                                connection.getConnectDeviceName()+"，当前连接的设备地址 "+connection.getConnectDeviceAddress());
+                    }
+                });
+
+                connection.setListener(new BtConnection.Listener() {
+                    @Override
+                    public void onMessage(byte[] data, int length) {
+                        String dataSet = new String(data, 0, length);
+                        Log.d(TAG, "data from remote" + dataSet);
+                        PublicThreadPools.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mRemoteDataTextView.setText("来自远程设备数据：" + dataSet);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onDisconnected(Exception e) {
+                        Log.d(TAG, "data from remote"+"Disconnected");
+                    }
+                });
+            }
+        });
+        try {
+            server.start();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
@@ -46,15 +128,17 @@ public class BlueDeviceListActivity extends BaseActivity {
         super.onStart();
         if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN)
                 != PackageManager.PERMISSION_GRANTED)
-        && (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT)!=PackageManager.PERMISSION_GRANTED)
-            && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED) {
+                && (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT,
-                        Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
+                                Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
             }
         } else {
             deviceDiscoveryViewModel.start(this);
+            startBtServer();
+            setBlueListListener();
         }
     }
 
@@ -86,8 +170,10 @@ public class BlueDeviceListActivity extends BaseActivity {
             }
             if (allGranted) {
                 deviceDiscoveryViewModel.start(this);
+                startBtServer();
+                setBlueListListener();
             } else {
-               Log.e("BlueDeviceListActivity", "onRequestPermissionsResult: Permission denied");
+                Log.e("BlueDeviceListActivity", "onRequestPermissionsResult: Permission denied");
             }
         }
     }

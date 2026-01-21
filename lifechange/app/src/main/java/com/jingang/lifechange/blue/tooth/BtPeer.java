@@ -9,11 +9,14 @@ public final class BtPeer {
     public final int rssi;
     public final long lastUpdateTime;
 
-    public BtPeer(String address, String name, int rssi, long lastSeen) {
+    public final String deviceBrand;
+
+    public BtPeer(String address, String name, int rssi, long lastSeen, String deviceBrand) {
         this.address = address;
         this.name = name;
         this.rssi = rssi;
         this.lastUpdateTime = lastSeen;
+        this.deviceBrand = deviceBrand;
     }
 
     public BtPeer update(int newRssi) {
@@ -21,7 +24,8 @@ public final class BtPeer {
                 address,
                 name,
                 newRssi,
-                System.currentTimeMillis()
+                System.currentTimeMillis(),
+                deviceBrand
         );
     }
 

@@ -20,6 +20,7 @@ public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyView
 
     private final String TAG = "BlueListAdapter";
     private volatile List<BtPeer> mData;
+    private ItemSelectListener mOnClickListener;
 
     public BlueListAdapter() {
     }
@@ -29,6 +30,10 @@ public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyView
         mData = data;
         sortBtPeers(mData);
         notifyDataSetChanged();
+    }
+
+    public void setOnClickListener(ItemSelectListener listener) {
+        this.mOnClickListener = listener;
     }
 
     @NonNull
@@ -46,6 +51,15 @@ public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyView
         holder.mDeviceAddress.setText("蓝牙设备Mac地址："+peer.address);
         holder.mDeviceRssi.setText("蓝牙设备信号强度："+ peer.rssi);
         holder.mLastUpdateTime.setText("最后更新时间："+ TimeUtil.formatTimestamp(peer.lastUpdateTime));
+        holder.mDeviceVendorName.setText("蓝牙设备厂商："+ peer.deviceBrand);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v(TAG, "onClick blueDevice="+peer.address);
+                mOnClickListener.onItemSelect(peer);
+            }
+        });
+
 
     }
 
@@ -62,6 +76,7 @@ public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyView
         private final TextView mDeviceRssi;
 
         private final TextView mLastUpdateTime;
+        private final TextView mDeviceVendorName;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +84,8 @@ public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyView
             mDeviceAddress = itemView.findViewById(R.id.blue_device_mac_address);
             mDeviceRssi = itemView.findViewById(R.id.blue_device_rssi);
             mLastUpdateTime = itemView.findViewById(R.id.last_update_time);
+            mDeviceVendorName = itemView.findViewById(R.id.vendor_name);
+
         }
     }
     // 使用静态Comparator避免重复创建

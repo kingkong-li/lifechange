@@ -1,5 +1,7 @@
 package com.jingang.lifechange.utils;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Process;
 import android.util.Log;
 
@@ -18,6 +20,8 @@ public class PublicThreadPools{
     public static ExecutorService getService(){
         return service;
     }
+    private static final Handler MAIN_HANDLER =
+            new Handler(Looper.getMainLooper());
     private  static ExecutorService service= Executors.newFixedThreadPool(5, new ThreadFactory() {
         @Override
         public Thread newThread(Runnable r) {
@@ -27,5 +31,8 @@ public class PublicThreadPools{
             return thread;
         }
     });
+    public static void runOnUiThread(Runnable runnable){
+        MAIN_HANDLER.post(runnable);
+    }
 
 }

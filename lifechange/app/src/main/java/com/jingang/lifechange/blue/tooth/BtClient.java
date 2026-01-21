@@ -24,12 +24,11 @@ public class BtClient {
                 device.createRfcommSocketToServiceRecord(
                         BtConst.SERVICE_UUID
                 );
-
-        adapter.cancelDiscovery();
+        // 建立连接
         socket.connect(); // 阻塞
-
+        // 执行到这里客户端服务端你已经建立连接了
         BtConnection conn = new BtConnection(socket);
-        conn.start();
+        conn.startReadData();
         return conn;
     }
 }

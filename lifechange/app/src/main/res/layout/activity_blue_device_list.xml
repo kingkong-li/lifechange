@@ -8,7 +8,7 @@
     tools:context=".blue.tooth.BlueDeviceListActivity">
     <TextView
         android:id="@+id/blue_device_title"
-        android:layout_width="wrap_content"
+        android:layout_width="399dp"
         android:layout_height="wrap_content"
         android:text="蓝牙设备列表"
         android:textSize="20sp"
@@ -17,6 +17,29 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="5dp"
         android:layout_marginStart="20dp" />
+    <TextView
+        android:id="@+id/server_content_title"
+        android:layout_width="399dp"
+        android:layout_height="wrap_content"
+        android:text="蓝牙服务端，接收到数据如下"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/blue_device_title"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp" />
+    <TextView
+        android:id="@+id/blue_server_content"
+        android:layout_marginTop="12dp"
+        android:padding="12dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="399dp"
+        android:layout_height="0dp"
+        android:text="这里显示收到的数据"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toEndOf="@id/blue_tooth_device_list"
+        app:layout_constraintTop_toBottomOf="@id/server_content_title"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/blue_tooth_device_list"

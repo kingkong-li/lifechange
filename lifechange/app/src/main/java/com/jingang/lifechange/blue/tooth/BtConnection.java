@@ -1,6 +1,7 @@
 package com.jingang.lifechange.blue.tooth;
 
 import android.bluetooth.BluetoothSocket;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +33,7 @@ public class BtConnection {
         this.listener = listener;
     }
 
-    public void start() {
+    public void startReadData() {
         readThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -53,6 +54,7 @@ public class BtConnection {
                 }
             }
         } catch (Exception e) {
+            Log.e("BtConnection", "readLoop: " + e);
             if (listener != null) {
                 listener.onDisconnected(e);
             }
@@ -71,5 +73,20 @@ public class BtConnection {
         try {
             socket.close(); // 会唤醒 read()
         } catch (IOException ignored) {}
+    }
+
+    public String getConnectDeviceName () {
+        String name = "";
+       if(socket!=null){
+           name = socket.getRemoteDevice().getName();
+       }
+       return name;
+    }
+    public String getConnectDeviceAddress () {
+        String address = "";
+        if(socket!=null){
+            address = socket.getRemoteDevice().getAddress();
+        }
+        return address;
     }
 }

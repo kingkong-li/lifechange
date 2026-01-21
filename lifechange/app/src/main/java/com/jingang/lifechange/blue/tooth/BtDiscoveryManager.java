@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
+import android.bluetooth.le.ScanRecord;
 import android.bluetooth.le.ScanResult;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,10 +14,14 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
+import android.util.SparseArray;
 
 import androidx.annotation.RequiresPermission;
 import androidx.core.app.ActivityCompat;
 
+import com.jingang.lifechange.utils.BlueDeviceVendorHelper;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class BtDiscoveryManager {
@@ -46,6 +51,7 @@ public class BtDiscoveryManager {
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
             BluetoothDevice device = result.getDevice();
+            ScanRecord record = result.getScanRecord();
             BtPeer peer = null;
             if (device != null) {
                 Log.v(TAG, "onScanResult device:name=" + device.getName()+",address="+device.getAddress()
@@ -54,7 +60,8 @@ public class BtDiscoveryManager {
                         device.getAddress(),
                         device.getName(),
                         result.getRssi(),
-                        System.currentTimeMillis()
+                        System.currentTimeMillis(),
+                        BlueDeviceVendorHelper.getVendorName(record)
                 );
             }
 
