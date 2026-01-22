@@ -32,6 +32,10 @@ public class PublicThreadPools{
         }
     });
     public static void runOnUiThread(Runnable runnable){
+        if (Looper.getMainLooper().isCurrentThread()) {
+            runnable.run();
+            return;
+        }
         MAIN_HANDLER.post(runnable);
     }
 

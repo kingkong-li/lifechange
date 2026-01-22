@@ -4,12 +4,13 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
-import androidx.annotation.UiThread;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +45,6 @@ public class BlueDeviceListActivity extends BaseActivity {
 
         deviceDiscoveryViewModel = new DeviceDiscoveryViewModel();
         deviceDiscoveryViewModel.getNewDevices().observe(this, peers -> {
-//            Log.v(TAG, "find peers=" + peers.toString());
             mBlueListAdapter.setData(peers);
         });
 
@@ -57,23 +57,30 @@ public class BlueDeviceListActivity extends BaseActivity {
             @Override
             public void onItemSelect(BtPeer peer) {
                 Log.v(TAG, "onItemSelect blueDevice=" + peer.address);
-                try {
-                    BtConnection connection = client.connect(peer.address);
-                    connection.setListener(new BtConnection.Listener() {
-                        @Override
-                        public void onMessage(byte[] data, int length) {
-                            Log.d(TAG+"CLIENT", new String(data, 0, length));
-                        }
+                PublicThreadPools.getService().submit(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            BtConnection connection = client.connect(peer.address);
+                            Log.d(TAG, "CLIENT "+"Connected");
+                            connection.setListener(new BtConnection.Listener() {
+                                @Override
+                                public void onMessage(byte[] data, int length) {
+                                    Log.d(TAG, "CLIENT "+new String(data, 0, length));
+                                }
 
-                        @Override
-                        public void onDisconnected(Exception e) {
-                            Log.d(TAG+"CLIENT", "Disconnected");
+                                @Override
+                                public void onDisconnected(Exception e) {
+                                    Log.d(TAG, "CLIENT "+"Disconnected");
+                                }
+                            });
+                            connection.send("Hello i am client".getBytes());
+                        } catch (Exception e) {
+                            Log.e(TAG, "CLIENT "+"Error="+ e);
                         }
-                    });
-                    connection.send("Hello".getBytes());
-                } catch (Exception e) {
-                    Log.e(TAG+"CLIENT", "Error"+ e);
-                }
+                    }
+                });
+
 
 
             }
@@ -81,6 +88,7 @@ public class BlueDeviceListActivity extends BaseActivity {
     }
 
     private void startBtServer() {
+        Log.i(TAG, "startBtServer");
         BtServer server = new BtServer();
         server.setListener(new BtServer.Listener() {
             @Override
@@ -98,11 +106,11 @@ public class BlueDeviceListActivity extends BaseActivity {
                     @Override
                     public void onMessage(byte[] data, int length) {
                         String dataSet = new String(data, 0, length);
-                        Log.d(TAG, "data from remote" + dataSet);
+                        Log.d(TAG, "data from remote " + dataSet);
                         PublicThreadPools.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                mRemoteDataTextView.setText("来自远程设备数据：" + dataSet);
+                                mRemoteDataTextView.append(dataSet+"\n");
                             }
                         });
                     }

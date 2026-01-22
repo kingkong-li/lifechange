@@ -1,7 +1,6 @@
 package com.jingang.lifechange.blue.tooth;
 
 import android.util.Log;
-import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,9 +64,7 @@ public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyView
 
     @Override
     public int getItemCount() {
-        int count = mData == null ? 0 : mData.size();
-        Log.v(TAG, "getItemCount:" + count);
-        return count;
+        return mData == null ? 0 : mData.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

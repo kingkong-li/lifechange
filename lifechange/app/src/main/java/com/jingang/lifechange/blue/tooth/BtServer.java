@@ -58,10 +58,10 @@ public class BtServer {
                     return;
                 }
                 BluetoothDevice device = socket.getRemoteDevice();
-                Log.d(TAG, "acceptLoop: " + device.getName() + " " + device.getAddress()+
-                        device.getName());
+                Log.d(TAG, "acceptLoop: " + device.getName() + " " + device.getAddress());
                 if (listener != null) {
                     BtConnection conn = new BtConnection(socket);
+                    conn.send("receive data".getBytes());
                     listener.onClientConnected(conn);
                     conn.startReadData();
                 }
