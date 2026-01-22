@@ -4,8 +4,6 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -57,6 +55,9 @@ public class BlueDeviceListActivity extends BaseActivity {
         mBlueListAdapter.setOnClickListener(new ItemSelectListener() {
             @Override
             public void onItemSelect(BtPeer peer) {
+                // 跳转到蓝牙聊条页面
+                BlueChatActivity.start(BlueDeviceListActivity.this, peer.name,peer.address);
+
                 Log.v(TAG, "onItemSelect blueDevice=" + peer.address);
                 PublicThreadPools.getService().submit(new Runnable() {
                     @Override
@@ -201,4 +202,8 @@ public class BlueDeviceListActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected String getLabel() {
+        return "附近蓝牙设备列表";
+    }
 }
