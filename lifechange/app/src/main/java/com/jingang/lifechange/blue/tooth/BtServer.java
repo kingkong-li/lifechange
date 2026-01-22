@@ -35,6 +35,10 @@ public class BtServer {
 
     @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     public void start() throws IOException {
+        if (adapter == null || !adapter.isEnabled()) {
+            Log.e("BT", "Bluetooth is not available or disabled");
+            return;
+        }
 
         serverSocket =
                 adapter.listenUsingRfcommWithServiceRecord(
@@ -61,7 +65,7 @@ public class BtServer {
                 Log.d(TAG, "acceptLoop: " + device.getName() + " " + device.getAddress());
                 if (listener != null) {
                     BtConnection conn = new BtConnection(socket);
-                    conn.send("receive data".getBytes());
+                    conn.send("welcome!! I am server".getBytes());
                     listener.onClientConnected(conn);
                     conn.startReadData();
                 }

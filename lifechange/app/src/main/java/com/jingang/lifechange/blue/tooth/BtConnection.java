@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class BtConnection {
+    private static final String TAG = "BtConnection";
 
     private final BluetoothSocket socket;
     private final InputStream in;
@@ -54,7 +55,7 @@ public class BtConnection {
                 }
             }
         } catch (Exception e) {
-            Log.e("BtConnection", "readLoop: " + e);
+            Log.e(TAG, "readLoop: " + e);
             if (listener != null) {
                 listener.onDisconnected(e);
             }

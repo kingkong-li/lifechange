@@ -29,6 +29,7 @@ public class BlueDeviceListActivity extends BaseActivity {
     private BlueListAdapter mBlueListAdapter;
     private TextView mCurrentConnectDeviceInfoTextView;
     private TextView mRemoteDataTextView;
+    BtServer server;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,26 +62,32 @@ public class BlueDeviceListActivity extends BaseActivity {
                     @Override
                     public void run() {
                         try {
+                            if (ActivityCompat.checkSelfPermission(BlueDeviceListActivity.this,
+                                    Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED
+                                    || ActivityCompat.checkSelfPermission(BlueDeviceListActivity.this,
+                                    Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                                Log.e(TAG, "CLIENT " + "No connect permission");
+                                return;
+                            }
                             BtConnection connection = client.connect(peer.address);
-                            Log.d(TAG, "CLIENT "+"Connected");
+                            Log.d(TAG, "CLIENT " + "Connected");
                             connection.setListener(new BtConnection.Listener() {
                                 @Override
                                 public void onMessage(byte[] data, int length) {
-                                    Log.d(TAG, "CLIENT "+new String(data, 0, length));
+                                    Log.d(TAG, "CLIENT " + new String(data, 0, length));
                                 }
 
                                 @Override
                                 public void onDisconnected(Exception e) {
-                                    Log.d(TAG, "CLIENT "+"Disconnected");
+                                    Log.d(TAG, "CLIENT " + "Disconnected");
                                 }
                             });
                             connection.send("Hello i am client".getBytes());
                         } catch (Exception e) {
-                            Log.e(TAG, "CLIENT "+"Error="+ e);
+                            Log.e(TAG, "CLIENT " + "Error=" + e);
                         }
                     }
                 });
-
 
 
             }
@@ -89,16 +96,16 @@ public class BlueDeviceListActivity extends BaseActivity {
 
     private void startBtServer() {
         Log.i(TAG, "startBtServer");
-        BtServer server = new BtServer();
+        server = new BtServer();
         server.setListener(new BtServer.Listener() {
             @Override
             public void onClientConnected(BtConnection connection) {
-                Log.d(TAG, "onClientConnected address= "+connection.getConnectDeviceAddress());
+                Log.d(TAG, "onClientConnected address= " + connection.getConnectDeviceAddress());
                 PublicThreadPools.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mCurrentConnectDeviceInfoTextView.setText("当前连接的设备名称："+
-                                connection.getConnectDeviceName()+"，当前连接的设备地址 "+connection.getConnectDeviceAddress());
+                        mCurrentConnectDeviceInfoTextView.setText("当前连接的设备名称：" + connection.getConnectDeviceName() +
+                                "，当前连接的设备地址 " + connection.getConnectDeviceAddress());
                     }
                 });
 
@@ -110,19 +117,23 @@ public class BlueDeviceListActivity extends BaseActivity {
                         PublicThreadPools.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                mRemoteDataTextView.append(dataSet+"\n");
+                                mRemoteDataTextView.append(dataSet + "\n");
                             }
                         });
                     }
 
                     @Override
                     public void onDisconnected(Exception e) {
-                        Log.d(TAG, "data from remote"+"Disconnected");
+                        Log.d(TAG, "data from remote" + "Disconnected");
                     }
                 });
             }
         });
         try {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                Log.e(TAG, "SERVER " + "No connect permission");
+                return;
+            }
             server.start();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -161,6 +172,10 @@ public class BlueDeviceListActivity extends BaseActivity {
             }
         }
         deviceDiscoveryViewModel.stop(this);
+        if (server != null) {
+            server.stop();
+        }
+
 
     }
 

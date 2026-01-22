@@ -1,7 +1,9 @@
 package com.jingang.lifechange.blue.tooth;
 
+import android.Manifest;
 import android.content.Context;
 
+import androidx.annotation.RequiresPermission;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -27,6 +29,7 @@ public class DeviceDiscoveryViewModel {
     }
 
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_SCAN)
     public void stop(Context ctx) {
         manager.stop();
     }

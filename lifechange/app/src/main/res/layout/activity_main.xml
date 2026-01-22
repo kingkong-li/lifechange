@@ -1,86 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:padding="15dp"
-    android:orientation="vertical">
-    <Button
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_go_leaked_activity"
-        android:textStyle="bold"
-        android:text="去深入了解内存" />
-    <Button
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_learn_algorithm"
-        android:textStyle="bold"
-        android:text="去学习算法" />
+    android:layout_height="match_parent">
 
-    <Button
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="15dp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bt_know_lifecycle"
-        android:textStyle="bold"
-        android:text="去了解控件生命周期" />
+        android:orientation="vertical"
+        android:padding="15dp"
+        tools:context=".MainActivity">
 
-    <Button
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_learn_list"
-        android:textStyle="bold"
-        android:text="学习链表" />
-    <Button
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_learn_generics"
-        android:textStyle="bold"
-        android:text="学习泛型" />
-    <Button
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_learn_ui"
-        android:textStyle="bold"
-        android:text="学习ui" />
-    <Button
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_learn_location"
-        android:textStyle="bold"
-        android:text="学习定位" />
-    <Button
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_learn_aidl"
-        android:textStyle="bold"
-        android:text="学习aidl" />
-    <Button
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_learn_blue_tooth"
-        android:textStyle="bold"
-        android:text="学习蓝牙"
-        tools:ignore="HardcodedText" />
+        <Button
+            android:id="@+id/bt_go_leaked_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:text="去深入了解内存"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_learn_algorithm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:text="去学习算法"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_know_lifecycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:text="去了解控件生命周期"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_learn_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:text="学习链表"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_learn_generics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:text="学习泛型"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_learn_ui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:text="学习ui"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_learn_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:text="学习定位"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_learn_aidl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:text="学习aidl"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_learn_blue_tooth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:text="学习蓝牙"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
