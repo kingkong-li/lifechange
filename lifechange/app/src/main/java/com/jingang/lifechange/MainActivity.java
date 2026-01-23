@@ -1,6 +1,7 @@
 package com.jingang.lifechange;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.jingang.lifechange.algorithm.AlgorithmMainActivity;
 import com.jingang.lifechange.algorithm.struct.array.ArrayTestActivity;
 import com.jingang.lifechange.base.BaseActivity;
 import com.jingang.lifechange.blue.tooth.BlueDeviceListActivity;
+import com.jingang.lifechange.blue.tooth.BluetoothService;
 import com.jingang.lifechange.generics.TestGenericsActivity;
 import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
 import com.jingang.lifechange.location.LocationMainActivity;
@@ -31,6 +33,13 @@ public class MainActivity extends BaseActivity {
         Debug.startMethodTracing("jg");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // 启动服务
+        Intent intent = new Intent(this, BluetoothService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent); // Android 8.0+ 必须用这个方法
+        } else {
+            startService(intent);
+        }
 
         Button button1=findViewById(R.id.bt_go_leaked_activity);
         button1.setOnClickListener(new View.OnClickListener() {

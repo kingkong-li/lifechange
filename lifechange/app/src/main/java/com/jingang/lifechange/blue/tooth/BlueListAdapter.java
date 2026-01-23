@@ -55,7 +55,9 @@ public class BlueListAdapter extends RecyclerView.Adapter<BlueListAdapter.MyView
             @Override
             public void onClick(View v) {
                 Log.v(TAG, "onClick blueDevice="+peer.address);
-                mOnClickListener.onItemSelect(peer);
+                if (mOnClickListener != null) {
+                    mOnClickListener.onItemSelect(peer);
+                }
             }
         });
 

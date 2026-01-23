@@ -9,6 +9,8 @@ import android.util.Log;
 
 import androidx.annotation.RequiresPermission;
 
+import com.jingang.lifechange.utils.ToastUtil;
+
 import java.io.IOException;
 
 public class BtServer {
@@ -37,6 +39,7 @@ public class BtServer {
     public void start() throws IOException {
         if (adapter == null || !adapter.isEnabled()) {
             Log.e("BT", "Bluetooth is not available or disabled");
+            ToastUtil.getInstance().show("蓝牙未开启");
             return;
         }
 
