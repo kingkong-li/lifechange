@@ -60,46 +60,17 @@ public class BlueDeviceListActivity extends BaseActivity {
     }
 
     private void setBlueListListener() {
-        BtClient client = new BtClient();
+
         mBlueListAdapter.setOnClickListener(new ItemSelectListener() {
             @Override
             public void onItemSelect(BtPeer peer) {
+                Log.v(TAG, "mBlueListAdapter onItemSelect blueDevice=" + peer.address);
                 // 跳转到蓝牙聊条页面
                 BlueChatActivity.start(BlueDeviceListActivity.this, peer.name,peer.address);
                 BtPeerStore.get(BlueDeviceListActivity.this).add(peer);
                 mBlueChatAdapter.setData(BtPeerStore.get(BlueDeviceListActivity.this).getAll());
 
-                Log.v(TAG, "onItemSelect blueDevice=" + peer.address);
-                PublicThreadPools.getService().submit(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            if (ActivityCompat.checkSelfPermission(BlueDeviceListActivity.this,
-                                    Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED
-                                    || ActivityCompat.checkSelfPermission(BlueDeviceListActivity.this,
-                                    Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                                Log.e(TAG, "CLIENT " + "No connect permission");
-                                return;
-                            }
-                            BtConnection connection = client.connect(peer.address);
-                            Log.d(TAG, "CLIENT " + "Connected");
-                            connection.setListener(new BtConnection.Listener() {
-                                @Override
-                                public void onMessage(byte[] data, int length) {
-                                    Log.d(TAG, "CLIENT " + new String(data, 0, length));
-                                }
 
-                                @Override
-                                public void onDisconnected(Exception e) {
-                                    Log.d(TAG, "CLIENT " + "Disconnected");
-                                }
-                            });
-                            connection.send("Hello i am client".getBytes());
-                        } catch (Exception e) {
-                            Log.e(TAG, "CLIENT " + "Error=" + e);
-                        }
-                    }
-                });
 
 
             }

@@ -1,19 +1,25 @@
 package com.jingang.lifechange.blue.tooth;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jingang.lifechange.R;
 import com.jingang.lifechange.base.BaseActivity;
+import com.jingang.lifechange.utils.LiveDataBus;
+import com.jingang.lifechange.utils.PublicThreadPools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +33,8 @@ public class BlueChatActivity extends BaseActivity {
     private Button mMessageSendButton;
     private ChatMessageAdapter chatMessageAdapter;
     private List<ChatMessage> chatMessages;
+    BtClient client = new BtClient();
+    String mBlueDeviceMacAddress;
 
 
     public static void start(Context context, String blueDeviceName, String address) {
@@ -46,6 +54,17 @@ public class BlueChatActivity extends BaseActivity {
         setupSendButton();
         // 处理第一次启动时的 Intent
         handleIntent(getIntent());
+        addMessageReceiver();
+    }
+
+    private void addMessageReceiver() {
+        LiveDataBus.BLUE_MESSAGE.observe( this, message -> {
+            Log.d(TAG, "receive message: " + message);
+            ChatMessage receivedMessage = new ChatMessage(message.data, false);
+            chatMessages.add(receivedMessage);
+            chatMessageAdapter.notifyItemInserted(chatMessages.size() - 1);
+            mChatMessageRecyclerView.scrollToPosition(chatMessages.size() - 1);
+        });
     }
 
     @Override
@@ -61,10 +80,10 @@ public class BlueChatActivity extends BaseActivity {
     private void handleIntent(Intent intent) {
         if (intent != null) {
             String blueDeviceName = intent.getStringExtra(EXTRA_BLUE_DEVICE_NAME);
-            String blueAddress = intent.getStringExtra(EXTRA_BLUE_ADDRESS);
+            mBlueDeviceMacAddress = intent.getStringExtra(EXTRA_BLUE_ADDRESS);
             String pageTitle = blueDeviceName;
             if(TextUtils.isEmpty(blueDeviceName)){
-                pageTitle = blueAddress;
+                pageTitle = mBlueDeviceMacAddress;
             }
             setPageTitle(pageTitle);
             // 更新 UI 或逻辑
@@ -100,11 +119,9 @@ public class BlueChatActivity extends BaseActivity {
                     // 清空输入框
                     mInputMessageEditText.setText("");
 
-                    // TODO: 这里可以添加蓝牙发送逻辑
-                    // sendMessageViaBluetooth(message);
+                    // 蓝牙发送逻辑
+                    sendMessageViaBluetooth(message);
 
-                    // 模拟接收一条消息（用于UI演示）
-                    simulateReceivedMessage("收到: " + message);
                 } else {
                     Toast.makeText(BlueChatActivity.this, "请输入消息", Toast.LENGTH_SHORT).show();
                 }
@@ -112,17 +129,38 @@ public class BlueChatActivity extends BaseActivity {
         });
     }
 
-    private void simulateReceivedMessage(String message) {
-        // 延迟1秒模拟接收消息
-        mMessageSendButton.postDelayed(new Runnable() {
+    private void sendMessageViaBluetooth(String message) {
+        PublicThreadPools.getService().submit(new Runnable() {
             @Override
             public void run() {
-                ChatMessage receivedMessage = new ChatMessage(message, false);
-                chatMessages.add(receivedMessage);
-                chatMessageAdapter.notifyItemInserted(chatMessages.size() - 1);
-                mChatMessageRecyclerView.scrollToPosition(chatMessages.size() - 1);
+                try {
+                    if (ActivityCompat.checkSelfPermission(BlueChatActivity.this,
+                            Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED
+                            || ActivityCompat.checkSelfPermission(BlueChatActivity.this,
+                            Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                        Log.e(TAG, "CLIENT " + "No connect permission");
+                        return;
+                    }
+                    BtConnection connection = client.connect(mBlueDeviceMacAddress);
+                    Log.d(TAG, "CLIENT " + "Connected");
+                    connection.setListener(new BtConnection.Listener() {
+                        @Override
+                        public void onMessage(byte[] data, int length) {
+                            Log.d(TAG, "CLIENT " + new String(data, 0, length));
+                        }
+
+                        @Override
+                        public void onDisconnected(Exception e) {
+                            Log.d(TAG, "CLIENT " + "Disconnected");
+                        }
+                    });
+                    connection.send(message.getBytes());
+                } catch (Exception e) {
+                    Log.e(TAG, "CLIENT " + "Error=" + e);
+                }
             }
-        }, 1000);
+        });
+
     }
 
     @Override

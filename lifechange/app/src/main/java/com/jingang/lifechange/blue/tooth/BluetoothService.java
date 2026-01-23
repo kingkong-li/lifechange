@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
 import com.jingang.lifechange.R;
+import com.jingang.lifechange.utils.LiveDataBus;
 
 import java.io.IOException;
 
@@ -75,6 +76,12 @@ public class BluetoothService extends Service {
                     public void onMessage(byte[] data, int length) {
                         String dataSet = new String(data, 0, length);
                         Log.d(TAG, "data from remote " + dataSet);
+                        BlueDeviceMessage message = new BlueDeviceMessage();
+                        message.deviceName = connection.getConnectDeviceName();
+                        message.deviceAddress = connection.getConnectDeviceAddress();
+                        message.data = dataSet;
+                        LiveDataBus.BLUE_MESSAGE.postValue(message);
+
                     }
 
                     @Override
