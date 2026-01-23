@@ -17,6 +17,12 @@ public class BtConnection {
     private volatile boolean running = true;
     private Thread readThread;
 
+    private boolean isConnected = true;
+
+    public boolean isConnected() {
+        return isConnected;
+    }
+
     public interface Listener {
         void onMessage(byte[] data, int length);
         void onDisconnected(Exception e);
@@ -28,6 +34,7 @@ public class BtConnection {
         this.socket = socket;
         this.in = socket.getInputStream();
         this.out = socket.getOutputStream();
+        isConnected = true;
     }
 
     public void setListener(Listener listener) {
@@ -35,6 +42,7 @@ public class BtConnection {
     }
 
     public void startReadData() {
+
         readThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -56,6 +64,7 @@ public class BtConnection {
             }
         } catch (Exception e) {
             Log.e(TAG, "readLoop: " + e);
+            isConnected = false;
             if (listener != null) {
                 listener.onDisconnected(e);
             }
@@ -72,6 +81,7 @@ public class BtConnection {
     public synchronized void close() {
         running = false;
         try {
+            isConnected = false;
             socket.close(); // 会唤醒 read()
         } catch (IOException ignored) {}
     }

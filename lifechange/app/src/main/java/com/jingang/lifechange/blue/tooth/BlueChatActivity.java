@@ -21,6 +21,7 @@ import com.jingang.lifechange.base.BaseActivity;
 import com.jingang.lifechange.utils.LiveDataBus;
 import com.jingang.lifechange.utils.PublicThreadPools;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class BlueChatActivity extends BaseActivity {
     private ChatMessageAdapter chatMessageAdapter;
     private List<ChatMessage> chatMessages;
     BtClient client = new BtClient();
+    private volatile BtConnection mConnection;
     String mBlueDeviceMacAddress;
 
 
@@ -57,8 +59,43 @@ public class BlueChatActivity extends BaseActivity {
         addMessageReceiver();
     }
 
+    private void buildConnection() {
+
+        PublicThreadPools.getService().submit(new Runnable() {
+            @Override
+            public void run() {
+                if (ActivityCompat.checkSelfPermission(BlueChatActivity.this,
+                        Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED
+                        || ActivityCompat.checkSelfPermission(BlueChatActivity.this,
+                        Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    Log.e(TAG, "CLIENT " + "No connect permission");
+                    return;
+                }
+                try {
+                    mConnection = client.connect(mBlueDeviceMacAddress);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Log.d(TAG, "CLIENT " + "Connected");
+                mConnection.setListener(new BtConnection.Listener() {
+                    @Override
+                    public void onMessage(byte[] data, int length) {
+                        Log.d(TAG, "CLIENT " + new String(data, 0, length));
+                    }
+
+                    @Override
+                    public void onDisconnected(Exception e) {
+                        Log.d(TAG, "CLIENT " + "Disconnected");
+                    }
+                });
+            }
+        });
+
+
+    }
+
     private void addMessageReceiver() {
-        LiveDataBus.BLUE_MESSAGE.observe( this, message -> {
+        LiveDataBus.BLUE_MESSAGE.observe(this, message -> {
             Log.d(TAG, "receive message: " + message);
             ChatMessage receivedMessage = new ChatMessage(message.data, false);
             chatMessages.add(receivedMessage);
@@ -82,10 +119,11 @@ public class BlueChatActivity extends BaseActivity {
             String blueDeviceName = intent.getStringExtra(EXTRA_BLUE_DEVICE_NAME);
             mBlueDeviceMacAddress = intent.getStringExtra(EXTRA_BLUE_ADDRESS);
             String pageTitle = blueDeviceName;
-            if(TextUtils.isEmpty(blueDeviceName)){
+            if (TextUtils.isEmpty(blueDeviceName)) {
                 pageTitle = mBlueDeviceMacAddress;
             }
             setPageTitle(pageTitle);
+            buildConnection();
             // 更新 UI 或逻辑
         }
     }
@@ -134,27 +172,10 @@ public class BlueChatActivity extends BaseActivity {
             @Override
             public void run() {
                 try {
-                    if (ActivityCompat.checkSelfPermission(BlueChatActivity.this,
-                            Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED
-                            || ActivityCompat.checkSelfPermission(BlueChatActivity.this,
-                            Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                        Log.e(TAG, "CLIENT " + "No connect permission");
-                        return;
+                    if (mConnection == null || !mConnection.isConnected()) {
+                        buildConnection();
                     }
-                    BtConnection connection = client.connect(mBlueDeviceMacAddress);
-                    Log.d(TAG, "CLIENT " + "Connected");
-                    connection.setListener(new BtConnection.Listener() {
-                        @Override
-                        public void onMessage(byte[] data, int length) {
-                            Log.d(TAG, "CLIENT " + new String(data, 0, length));
-                        }
-
-                        @Override
-                        public void onDisconnected(Exception e) {
-                            Log.d(TAG, "CLIENT " + "Disconnected");
-                        }
-                    });
-                    connection.send(message.getBytes());
+                    mConnection.send(message.getBytes());
                 } catch (Exception e) {
                     Log.e(TAG, "CLIENT " + "Error=" + e);
                 }
@@ -170,7 +191,7 @@ public class BlueChatActivity extends BaseActivity {
 
     private void setPageTitle(String title) {
         if (getSupportActionBar() != null) {
-           getSupportActionBar().setTitle(title);
+            getSupportActionBar().setTitle(title);
         }
     }
 }
