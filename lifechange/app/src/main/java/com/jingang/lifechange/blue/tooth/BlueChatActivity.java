@@ -59,7 +59,7 @@ public class BlueChatActivity extends BaseActivity {
         addMessageReceiver();
     }
 
-    private void buildConnection() {
+    private void buildConnection(String waitSendMessage) {
 
         PublicThreadPools.getService().submit(new Runnable() {
             @Override
@@ -73,6 +73,9 @@ public class BlueChatActivity extends BaseActivity {
                 }
                 try {
                     mConnection = client.connect(mBlueDeviceMacAddress);
+                    if (TextUtils.isEmpty(waitSendMessage)) {
+                        mConnection.send(waitSendMessage.getBytes());
+                    }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -123,7 +126,7 @@ public class BlueChatActivity extends BaseActivity {
                 pageTitle = mBlueDeviceMacAddress;
             }
             setPageTitle(pageTitle);
-            buildConnection();
+            buildConnection(null);
             // 更新 UI 或逻辑
         }
     }
@@ -173,9 +176,11 @@ public class BlueChatActivity extends BaseActivity {
             public void run() {
                 try {
                     if (mConnection == null || !mConnection.isConnected()) {
-                        buildConnection();
+                        buildConnection(message);
+                    } else {
+                        mConnection.send(message.getBytes());
                     }
-                    mConnection.send(message.getBytes());
+
                 } catch (Exception e) {
                     Log.e(TAG, "CLIENT " + "Error=" + e);
                 }
