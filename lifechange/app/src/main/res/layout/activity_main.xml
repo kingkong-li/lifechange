@@ -93,6 +93,16 @@
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
+        <Button
+            android:id="@+id/bt_learn_socket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:text="学习socket"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
 
     </LinearLayout>
 </ScrollView>

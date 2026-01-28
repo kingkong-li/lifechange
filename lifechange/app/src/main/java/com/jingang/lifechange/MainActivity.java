@@ -18,6 +18,7 @@ import com.jingang.lifechange.generics.TestGenericsActivity;
 import com.jingang.lifechange.lifecycle.LifeCycleMainActivity;
 import com.jingang.lifechange.location.LocationMainActivity;
 import com.jingang.lifechange.memory.LeakDemoActivity;
+import com.jingang.lifechange.socket.SocketMainActivity;
 import com.jingang.lifechange.thread.OrderMethodClass;
 import com.jingang.lifechange.ui.LearnDisplayActivity;
 import com.jingang.lifechange.ui.gesture.GestureShowActivity;
@@ -120,6 +121,15 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this, BlueDeviceListActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+        Button button10=findViewById(R.id.bt_learn_socket);
+        button10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(MainActivity.this, SocketMainActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });

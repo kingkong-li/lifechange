@@ -16,6 +16,14 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES"/>
+    <!-- 基础网络权限：创建Socket必需 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <queries>
         <package android:name="com.example.networklib" />
     </queries>
@@ -28,11 +36,21 @@
         android:roundIcon="@mipmap/launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".socket.SocketClientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".socket.SocketServerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".socket.SocketMainActivity"
+            android:exported="false" />
+
         <service
             android:name=".blue.tooth.BluetoothService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="connectedDevice"/>
+            android:foregroundServiceType="connectedDevice" />
 
         <activity
             android:name=".blue.tooth.BlueChatActivity"
