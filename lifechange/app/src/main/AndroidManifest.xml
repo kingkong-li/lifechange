@@ -20,6 +20,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES"/>
+
     <!-- 基础网络权限：创建Socket必需 -->
     <uses-permission android:name="android.permission.INTERNET" />
 

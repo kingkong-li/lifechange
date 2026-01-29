@@ -1,11 +1,17 @@
 package com.jingang.lifechange.socket;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.jingang.lifechange.R;
 import com.jingang.lifechange.base.BaseActivity;
@@ -37,6 +43,16 @@ public class SocketServerActivity extends BaseActivity {
         mOpenHotSpotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    if (ContextCompat.checkSelfPermission(SocketServerActivity.this, Manifest.permission.NEARBY_WIFI_DEVICES)
+                            != PackageManager.PERMISSION_GRANTED) {
+
+                        // 2. 只有没权限时才去申请
+                        ActivityCompat.requestPermissions(SocketServerActivity.this,
+                                new String[]{Manifest.permission.NEARBY_WIFI_DEVICES}, 1001);
+                        return; // 结束当前点击，等待回调
+                    }
+                }
                 if (HotspotHelper.getInstance().isHotspotActive()) {
                     HotspotHelper.getInstance().stopHotspot();
                     mOpenHotSpotButton.setText("开启热点");
