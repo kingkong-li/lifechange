@@ -42,7 +42,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
         return messages.size();
     }
 
-    static class MessageViewHolder extends RecyclerView.ViewHolder {
+    public static class MessageViewHolder extends RecyclerView.ViewHolder {
         TextView messageText;
 
         public MessageViewHolder(@NonNull View itemView) {

@@ -27,7 +27,7 @@ public class SocketClientActivity extends BaseActivity {
     private TextView tvConnectionStatus;
     private RecyclerView rvChatMessages;
     private ChatMessageAdapter chatMessageAdapter;
-    private List<ChatMessage> chatMessages = new ArrayList<>();
+    private final List<ChatMessage> chatMessages = new ArrayList<>();
     private SocketConnection socketConnection;
     private SocketClient socketClient;
 
@@ -86,7 +86,7 @@ public class SocketClientActivity extends BaseActivity {
                 
                 runOnUiThread(() -> {
                     tvConnectionStatus.setText("已连接到 " + ip + ":" + port);
-                    tvConnectionStatus.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
+                    tvConnectionStatus.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light, null));
                     btnConnect.setText("断开连接");
                     btnSend.setEnabled(true);
                     ToastUtil.getInstance().show("连接成功");
@@ -124,7 +124,7 @@ public class SocketClientActivity extends BaseActivity {
     private void resetConnectionState() {
         runOnUiThread(() -> {
             tvConnectionStatus.setText("未连接");
-            tvConnectionStatus.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
+            tvConnectionStatus.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light,null));
             btnConnect.setText("连接");
             btnSend.setEnabled(false);
         });
@@ -188,7 +188,7 @@ public class SocketClientActivity extends BaseActivity {
                     ToastUtil.getInstance().show("发送失败: " + e.getMessage());
                     resetConnectionState();
                 });
-                e.printStackTrace();
+              Log.e(TAG, TAG + "Error sending message: " + e);
             }
         }).start();
     }

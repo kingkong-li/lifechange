@@ -2,7 +2,6 @@ package com.jingang.lifechange.socket;
 
 import android.content.Context;
 import android.net.wifi.SoftApConfiguration;
-import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Looper;

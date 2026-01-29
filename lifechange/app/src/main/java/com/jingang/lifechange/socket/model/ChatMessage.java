@@ -1,8 +1,8 @@
 package com.jingang.lifechange.socket.model;
 
 public class ChatMessage {
-    private String message;
-    private boolean isSent;
+    private final String message;
+    private final boolean isSent;
 
     public ChatMessage(String message, boolean isSent) {
         this.message = message;

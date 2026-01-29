@@ -63,16 +63,16 @@ public class SocketServer {
                  NetworkInterface.getNetworkInterfaces();
                  en.hasMoreElements();) {
 
-                NetworkInterface intf = en.nextElement();
+                NetworkInterface networkInterface = en.nextElement();
 
                 for (Enumeration<InetAddress> enumIpAddr =
-                     intf.getInetAddresses();
+                     networkInterface.getInetAddresses();
                      enumIpAddr.hasMoreElements();) {
 
-                    InetAddress addr = enumIpAddr.nextElement();
-                    if (!addr.isLoopbackAddress()
-                            && addr instanceof Inet4Address) {
-                        return addr.getHostAddress();
+                    InetAddress address = enumIpAddr.nextElement();
+                    if (!address.isLoopbackAddress()
+                            && address instanceof Inet4Address) {
+                        return address.getHostAddress();
                     }
                 }
             }
