@@ -13,28 +13,46 @@ import com.jingang.lifechange.socket.model.ChatMessage;
 
 import java.util.List;
 
-public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.MessageViewHolder> {
-    private final List<ChatMessage> messages;
-    private final LayoutInflater inflater;
+public class ChatMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private static final int TYPE_SENT = 0;
+    private static final int TYPE_RECEIVED = 1;
+    
+    private List<ChatMessage> messages;
+    private LayoutInflater inflater;
 
     public ChatMessageAdapter(LayoutInflater inflater, List<ChatMessage> messages) {
-        this.inflater = inflater;
         this.messages = messages;
+        this.inflater = inflater;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        ChatMessage message = messages.get(position);
+        return message.isSent() ? TYPE_SENT : TYPE_RECEIVED;
     }
 
     @NonNull
     @Override
-    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_chat_message, parent, false);
-        return new MessageViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == TYPE_SENT) {
+            View view = inflater.inflate(R.layout.item_message_sent, parent, false);
+            return new SentMessageViewHolder(view);
+        } else {
+            View view = inflater.inflate(R.layout.item_message_received, parent, false);
+            return new ReceivedMessageViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ChatMessage message = messages.get(position);
-        holder.messageText.setText(message.getMessage());
-        holder.messageText.setBackgroundResource(
-                message.isSent() ? R.drawable.message_sent_bg : R.drawable.message_received_bg);
+        
+        if (holder instanceof SentMessageViewHolder) {
+            ((SentMessageViewHolder) holder).bind(message);
+        } else if (holder instanceof ReceivedMessageViewHolder) {
+            ((ReceivedMessageViewHolder) holder).bind(message);
+        }
     }
 
     @Override
@@ -42,12 +60,29 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
         return messages.size();
     }
 
-    public static class MessageViewHolder extends RecyclerView.ViewHolder {
-        TextView messageText;
+    static class SentMessageViewHolder extends RecyclerView.ViewHolder {
+        TextView tvMessage;
 
-        public MessageViewHolder(@NonNull View itemView) {
+        SentMessageViewHolder(View itemView) {
             super(itemView);
-            messageText = itemView.findViewById(R.id.tv_message);
+            tvMessage = itemView.findViewById(R.id.tv_message);
+        }
+
+        void bind(ChatMessage message) {
+            tvMessage.setText(message.getMessage());
+        }
+    }
+
+    static class ReceivedMessageViewHolder extends RecyclerView.ViewHolder {
+        TextView tvMessage;
+
+        ReceivedMessageViewHolder(View itemView) {
+            super(itemView);
+            tvMessage = itemView.findViewById(R.id.tv_message);
+        }
+
+        void bind(ChatMessage message) {
+            tvMessage.setText(message.getMessage());
         }
     }
 }

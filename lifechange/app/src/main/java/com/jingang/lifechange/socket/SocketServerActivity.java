@@ -1,5 +1,6 @@
 package com.jingang.lifechange.socket;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -106,18 +107,18 @@ public class SocketServerActivity extends BaseActivity {
 
     private void handleClient(SocketConnection conn) {
         Log.d(TAG, "handleClient" + conn.getClientAddress() + ":" + conn.getClientPort());
-        try {
-            while (isServerContainerRunning) {
-                String msg = conn.readString();
-                Log.d(TAG, "handleClient receive msg=" + msg);
-                // 业务协议处理
-                conn.sendString("ACK:" + msg);
-            }
-        } catch (IOException e) {
-            Log.d("Server", "client disconnected");
-        } finally {
-            conn.close();
-        }
+        
+        // 使用连接管理器存储连接
+        String connectionId = SocketConnectionManager.getInstance().addConnection(conn);
+        
+        // 为每个客户端启动聊天Activity
+        runOnUiThread(() -> {
+            Intent intent = new Intent(SocketServerActivity.this, SocketServerChatActivity.class);
+            intent.putExtra("connection_id", connectionId);
+            intent.putExtra("client_address", conn.getClientAddress());
+            intent.putExtra("client_port", Integer.parseInt(conn.getClientPort()));
+            startActivity(intent);
+        });
     }
 
 }

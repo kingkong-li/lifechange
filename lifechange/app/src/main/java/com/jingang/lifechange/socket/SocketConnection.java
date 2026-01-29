@@ -1,5 +1,8 @@
 package com.jingang.lifechange.socket;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -7,7 +10,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-public class SocketConnection {
+public class SocketConnection implements Parcelable {
 
     private final Socket socket;
     private final DataInputStream in;
@@ -56,5 +59,31 @@ public class SocketConnection {
     public OutputStream getOutputStream() {
         return out;
     }
+
+    // Parcelable implementation
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        // Socket cannot be serialized, so we'll handle this differently
+        // We'll create a new connection in the target activity instead
+    }
+
+    public static final Parcelable.Creator<SocketConnection> CREATOR = new Parcelable.Creator<SocketConnection>() {
+        @Override
+        public SocketConnection createFromParcel(Parcel source) {
+            // This won't actually create a valid connection
+            // We'll handle connection creation differently
+            return null;
+        }
+
+        @Override
+        public SocketConnection[] newArray(int size) {
+            return new SocketConnection[size];
+        }
+    };
 }
 

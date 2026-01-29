@@ -43,6 +43,9 @@
             android:name=".socket.SocketServerActivity"
             android:exported="false" />
         <activity
+            android:name=".socket.SocketServerChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".socket.SocketMainActivity"
             android:exported="false" />
 
