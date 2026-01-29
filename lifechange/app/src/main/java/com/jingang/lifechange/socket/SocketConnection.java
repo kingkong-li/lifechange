@@ -3,6 +3,8 @@ package com.jingang.lifechange.socket;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 
 // socket/SocketConnection.java
@@ -43,6 +45,17 @@ public class SocketConnection {
             return "";
         }
         return String.valueOf(socket.getPort());
+    }
+
+    public boolean isConnected() {
+        return socket != null && socket.isConnected();
+    }
+
+    public InputStream getInputStream() {
+        return in;
+    }
+    public OutputStream getOutputStream() {
+        return out;
     }
 }
 
